@@ -1,0 +1,184 @@
+24K Drums
+ARP 2600 V3
+Acid V
+Addictive Drums 2
+Albion ONE
+Alternative Solo Strings
+Ambiente
+Archetype Cory Wong X
+Archetype John Mayer X
+Archetype Misha Mansoor X
+Archetype Petrucci X
+Archetype Rabea X
+Archetype Tim Henson X
+Augmented BRASS
+Augmented GRAND PIANO
+Augmented MALLETS
+Augmented STRINGS
+Augmented VOICES
+Augmented WOODWINDS
+Augmented YANGTZE
+B-3 V2
+Balinese Flutes
+Bouquet
+Buchla Easel V
+CMI V
+CP-70 V
+CS-80 V4
+CSynclavierWin64
+CZ V
+Choir - Omnia Essentials
+Clavinet V
+CmajPerformer
+Contemporary Soloist - Violin
+D-50
+DX7 V
+Discoteca Drums
+Electric Keys - Phoenix
+Emulator II V
+FX_x64
+FabFilter Pro-Q 4
+FabFilter Saturn 2
+Farfisa V
+File Dialog EXE-PlugIn
+File Dialog IDE-PlugIn
+Galaxy Vintage D
+Guitar Rig 7
+India
+JD-800
+JUNO-106
+JUNO-60
+JUNO-60 CHORUS
+JUPITER-4
+JUPITER-8
+JV-1080
+JX-3P
+Jacob Collier Audience Choir
+Jun-6 V
+Jup-8 V4
+Jup-8000 V
+KORG MS-20 V
+Kontakt 8
+MG - Soft Acoustic Guitar
+MODO BASS 2
+Matrix-12 V2
+Mellotron V
+Mini V4
+MiniBrute V
+MiniFreak V
+Mix DRUMS
+Modular V3
+NIInstallAction
+OP-Xa V
+PROMARS
+Piano V3
+Prophet-5 V
+Prophet-VS V
+Pure LoFi
+RC-20 Retro Color
+Roland.Cloud.Bundle
+Royal Albert Hall Organ
+SEM V3
+SH-101
+SH-2
+SQ80 V
+SRX BRASS
+SRX DANCE TRAX
+SRX ELECTRIC PIANO
+SRX KEYBOARDS
+SRX ORCHESTRA
+SRX PIANO 1
+SRX PIANO 2
+SRX STRINGS
+SRX STUDIO
+SRX WORLD
+SSL Native Channel Strip 2
+SWAM Alto Flute 3
+SWAM Alto Sax 3
+SWAM Alto Trombone
+SWAM Baritone Sax 3
+SWAM Bass Clarinet 3
+SWAM Bass Flute 3
+SWAM Bass Trombone
+SWAM Bass Tuba
+SWAM Bassoon 3
+SWAM Cello 3
+SWAM Cello Section
+SWAM Clarinet 3
+SWAM Contrabassoon 3
+SWAM Double Bass 3
+SWAM Double Bass Section
+SWAM Double Bass Trombone
+SWAM English Horn 3
+SWAM Euphonium
+SWAM Flugelhorn
+SWAM Flugelhorn Eb
+SWAM Flute 3
+SWAM French Horn Bb
+SWAM French Horn F
+SWAM Oboe 3
+SWAM Piccolo 3
+SWAM Piccolo Trumpet
+SWAM Soprano Sax 3
+SWAM Tenor Bass Trombone
+SWAM Tenor Sax 3
+SWAM Tenor Trombone
+SWAM Trumpet
+SWAM Trumpet C
+SWAM Tuba Eb
+SWAM Viola 3
+SWAM Viola Section
+SWAM Violin 3
+SWAM Violin Section
+SYSTEM-1
+SYSTEM-100
+SYSTEM-8
+Serum
+Serum_x64
+Session Guitarist - Electric Neon Essentials
+Session Guitarist - Electric Vintage
+Session Guitarist - Picked Acoustic
+Session Percussionist
+Session Ukulele
+Solina V2
+Spitfire Symphony Orchestra - Discover
+Stage-73 V2
+SwarPlug
+Synclavier V
+SynthX V
+Synthi V
+Synthx V
+TB-303
+TR-606
+TR-707
+TR-727
+TR-808
+TR-909
+The Grandeur
+VOX Continental V2
+ValhallaDelay
+ValhallaDelay_x64
+ValhallaFreqEcho
+ValhallaFreqEcho_x64
+ValhallaFutureVerb
+ValhallaPlate
+ValhallaPlate_x64
+ValhallaRoom
+ValhallaRoom_x64
+ValhallaShimmer
+ValhallaShimmer_x64
+ValhallaSpaceModulator
+ValhallaSpaceModulator_x64
+ValhallaSupermassive
+ValhallaSupermassive_x64
+ValhallaUberMod
+ValhallaUberMod_x64
+ValhallaVintageVerb
+ValhallaVintageVerb_x64
+Vocoder V
+Wider
+Wurli V3
+XV-5080
+ZENOLOGY
+ZENOLOGY FX
+iZGuitarRigTDSP_x64

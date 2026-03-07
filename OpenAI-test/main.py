@@ -3,8 +3,8 @@ from openai import OpenAI
 # 1. Initialize the client
 # vLLM doesn't require a real API key by default, but the client needs a string.
 client = OpenAI(
-    base_url="https://v40rhrnrine990-8000.proxy.runpod.net/v1",
-    api_key="token-abc123" 
+    base_url="https://okpendqz37263s-8000.proxy.runpod.net/v1",
+    api_key="token-abc123"
 )
 
 # 2. List available models (Useful to verify connection)

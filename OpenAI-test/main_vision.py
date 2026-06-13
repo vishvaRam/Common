@@ -5,7 +5,7 @@ from openai import OpenAI
 # 1. Initialize Client
 # -----------------------------
 client = OpenAI(
-    base_url="https://61mvbir12v9g2p-8000.proxy.runpod.net/v1",
+    base_url="https://ybt4przs9uv6bm-8000.proxy.runpod.net/v1",
     api_key="token-abc123"
 )
 

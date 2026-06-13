@@ -1,0 +1,291 @@
+2026-03-24T03:50:25.724869281Z --- Starting SSH Service ---
+2026-03-24T03:50:25.725863817Z --- Preparing vLLM Command ---
+2026-03-24T03:50:25.725899071Z Model: Vishva007/Qwen3.5-9B-W4A16-AutoRound
+2026-03-24T03:50:25.726715198Z --- Executing Command ---
+2026-03-24T03:50:25.726743629Z vllm serve Vishva007/Qwen3.5-9B-W4A16-AutoRound --port 8000 --host 0.0.0.0 --max-model-len 8192 --trust-remote-code --kv-cache-dtype auto --gpu-memory-utilization 0.80 --speculative-config \{\"method\":\"mtp\"\,\"num_speculative_tokens\":1\} --tensor-parallel-size 1 --pipeline-parallel-size 1 --enable-prefix-caching --enable-chunked-prefill --mm-processor-kwargs \{\"max_pixels\":2508800\}
+2026-03-24T03:50:25.726749165Z -------------------------
+2026-03-24T03:50:25.735203600Z Server listening on 0.0.0.0 port 22.
+2026-03-24T03:50:25.735231591Z Server listening on :: port 22.
+2026-03-24T03:50:50.386808109Z (APIServer pid=52) INFO 03-24 03:50:50 [utils.py:297]
+2026-03-24T03:50:50.386837076Z (APIServer pid=52) INFO 03-24 03:50:50 [utils.py:297]        █     █     █▄   ▄█
+2026-03-24T03:50:50.386841909Z (APIServer pid=52) INFO 03-24 03:50:50 [utils.py:297]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.18.0
+2026-03-24T03:50:50.386843876Z (APIServer pid=52) INFO 03-24 03:50:50 [utils.py:297]   █▄█▀ █     █     █     █  model   Vishva007/Qwen3.5-9B-W4A16-AutoRound
+2026-03-24T03:50:50.386848262Z (APIServer pid=52) INFO 03-24 03:50:50 [utils.py:297]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+2026-03-24T03:50:50.386852442Z (APIServer pid=52) INFO 03-24 03:50:50 [utils.py:297]
+2026-03-24T03:50:50.391683861Z (APIServer pid=52) INFO 03-24 03:50:50 [utils.py:233] non-default args: {'model_tag': 'Vishva007/Qwen3.5-9B-W4A16-AutoRound', 'host': '0.0.0.0', 'model': 'Vishva007/Qwen3.5-9B-W4A16-AutoRound', 'trust_remote_code': True, 'max_model_len': 8192, 'gpu_memory_utilization': 0.8, 'enable_prefix_caching': True, 'mm_processor_kwargs': {'max_pixels': 2508800}, 'enable_chunked_prefill': True, 'speculative_config': {'method': 'mtp', 'num_speculative_tokens': 1}}
+2026-03-24T03:50:50.678610121Z (APIServer pid=52) The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-03-24T03:51:03.662995358Z (APIServer pid=52) INFO 03-24 03:51:03 [model.py:533] Resolved architecture: Qwen3_5ForConditionalGeneration
+2026-03-24T03:51:03.663595348Z (APIServer pid=52) INFO 03-24 03:51:03 [model.py:1582] Using max model len 8192
+2026-03-24T03:51:04.176395844Z (APIServer pid=52) The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-03-24T03:51:16.506343012Z (APIServer pid=52) INFO 03-24 03:51:16 [model.py:533] Resolved architecture: Qwen3_5MTP
+2026-03-24T03:51:16.506387721Z (APIServer pid=52) INFO 03-24 03:51:16 [model.py:1582] Using max model len 262144
+2026-03-24T03:51:16.507501375Z (APIServer pid=52) INFO 03-24 03:51:16 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=2048.
+2026-03-24T03:51:16.508095677Z (APIServer pid=52) WARNING 03-24 03:51:16 [config.py:372] Mamba cache mode is set to 'align' for Qwen3_5ForConditionalGeneration by default when prefix caching is enabled
+2026-03-24T03:51:16.508123684Z (APIServer pid=52) INFO 03-24 03:51:16 [config.py:392] Warning: Prefix caching in Mamba cache 'align' mode is currently enabled. Its support for Mamba layers is experimental. Please report any issues you may observe.
+2026-03-24T03:51:16.785846178Z (APIServer pid=52) INFO 03-24 03:51:16 [config.py:212] Setting attention block size to 528 tokens to ensure that attention page size is >= mamba page size.
+2026-03-24T03:51:16.786161448Z (APIServer pid=52) INFO 03-24 03:51:16 [vllm.py:754] Asynchronous scheduling is enabled.
+2026-03-24T03:51:43.738998185Z (EngineCore pid=1055) INFO 03-24 03:51:43 [core.py:103] Initializing a V1 LLM engine (v0.18.0) with config: model='Vishva007/Qwen3.5-9B-W4A16-AutoRound', speculative_config=SpeculativeConfig(method='mtp', model='Vishva007/Qwen3.5-9B-W4A16-AutoRound', num_spec_tokens=1), tokenizer='Vishva007/Qwen3.5-9B-W4A16-AutoRound', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=inc, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=Vishva007/Qwen3.5-9B-W4A16-AutoRound, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}
+2026-03-24T03:51:45.773925414Z (EngineCore pid=1055) INFO 03-24 03:51:45 [parallel_state.py:1395] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.16.112.2:35039 backend=nccl
+2026-03-24T03:51:45.793651759Z (EngineCore pid=1055) INFO 03-24 03:51:45 [parallel_state.py:1717] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+2026-03-24T03:51:46.589270775Z (EngineCore pid=1055) WARNING 03-24 03:51:46 [__init__.py:204] min_p and logit_bias parameters won't work with speculative decoding.
+2026-03-24T03:51:55.397207869Z (EngineCore pid=1055) INFO 03-24 03:51:55 [gpu_model_runner.py:4481] Starting to load model Vishva007/Qwen3.5-9B-W4A16-AutoRound...
+2026-03-24T03:51:55.916876090Z (EngineCore pid=1055) INFO 03-24 03:51:55 [cuda.py:373] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+2026-03-24T03:51:55.918196404Z (EngineCore pid=1055) INFO 03-24 03:51:55 [mm_encoder_attention.py:230] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+2026-03-24T03:51:55.969659720Z (EngineCore pid=1055) INFO 03-24 03:51:55 [gptq_marlin.py:376] Using MarlinLinearKernel for GPTQMarlinLinearMethod
+2026-03-24T03:51:55.971680713Z (EngineCore pid=1055) INFO 03-24 03:51:55 [qwen3_next.py:198] Using Triton/FLA GDN prefill kernel
+2026-03-24T03:51:57.817496006Z (EngineCore pid=1055) INFO 03-24 03:51:57 [cuda.py:317] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+2026-03-24T03:51:57.817998924Z (EngineCore pid=1055) INFO 03-24 03:51:57 [flash_attn.py:598] Using FlashAttention version 2
+2026-03-24T03:51:58.215252112Z (EngineCore pid=1055) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+2026-03-24T03:51:58.215786303Z (EngineCore pid=1055) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+2026-03-24T03:52:14.123591325Z (EngineCore pid=1055) INFO 03-24 03:52:14 [weight_utils.py:574] Time spent downloading weights for Vishva007/Qwen3.5-9B-W4A16-AutoRound: 15.663559 seconds
+2026-03-24T03:52:14.180578463Z (EngineCore pid=1055) Loading safetensors checkpoint shards:   0% Completed | 0/9 [00:00<?, ?it/s]
+2026-03-24T03:52:16.361824379Z (EngineCore pid=1055) Loading safetensors checkpoint shards:  11% Completed | 1/9 [00:02<00:17,  2.18s/it]
+2026-03-24T03:52:18.257793921Z (EngineCore pid=1055) Loading safetensors checkpoint shards:  22% Completed | 2/9 [00:04<00:14,  2.01s/it]
+2026-03-24T03:52:19.747590709Z (EngineCore pid=1055) Loading safetensors checkpoint shards:  33% Completed | 3/9 [00:05<00:10,  1.77s/it]
+2026-03-24T03:52:20.564767450Z (EngineCore pid=1055) Loading safetensors checkpoint shards:  44% Completed | 4/9 [00:06<00:06,  1.40s/it]
+2026-03-24T03:52:20.878321585Z (EngineCore pid=1055) Loading safetensors checkpoint shards:  67% Completed | 6/9 [00:06<00:02,  1.35it/s]
+2026-03-24T03:52:21.157517194Z (EngineCore pid=1055) Loading safetensors checkpoint shards:  89% Completed | 8/9 [00:06<00:00,  2.08it/s]
+2026-03-24T03:52:21.158379960Z (EngineCore pid=1055) Loading safetensors checkpoint shards: 100% Completed | 9/9 [00:06<00:00,  1.29it/s]
+2026-03-24T03:52:21.158407572Z (EngineCore pid=1055)
+2026-03-24T03:52:21.190735093Z (EngineCore pid=1055) INFO 03-24 03:52:21 [default_loader.py:384] Loading weights took 7.01 seconds
+2026-03-24T03:52:21.281146018Z (EngineCore pid=1055) INFO 03-24 03:52:21 [gpu_model_runner.py:4505] Loading drafter model...
+2026-03-24T03:52:21.401280894Z (EngineCore pid=1055) Loading safetensors checkpoint shards:   0% Completed | 0/9 [00:00<?, ?it/s]
+2026-03-24T03:52:21.705680494Z (EngineCore pid=1055) Loading safetensors checkpoint shards:  67% Completed | 6/9 [00:00<00:00, 19.72it/s]
+2026-03-24T03:52:21.984271503Z (EngineCore pid=1055) Loading safetensors checkpoint shards:  89% Completed | 8/9 [00:00<00:00, 12.62it/s]
+2026-03-24T03:52:22.081133815Z (EngineCore pid=1055) Loading safetensors checkpoint shards: 100% Completed | 9/9 [00:00<00:00, 13.24it/s]
+2026-03-24T03:52:22.081171088Z (EngineCore pid=1055)
+2026-03-24T03:52:22.088954916Z (EngineCore pid=1055) INFO 03-24 03:52:22 [default_loader.py:384] Loading weights took 0.69 seconds
+2026-03-24T03:52:22.117280208Z (EngineCore pid=1055) INFO 03-24 03:52:22 [eagle.py:1365] Detected MTP model. Sharing target model embedding weights with the draft model.
+2026-03-24T03:52:22.117321578Z (EngineCore pid=1055) INFO 03-24 03:52:22 [eagle.py:1419] Detected MTP model. Sharing target model lm_head weights with the draft model.
+2026-03-24T03:52:22.660543706Z (EngineCore pid=1055) INFO 03-24 03:52:22 [gpu_model_runner.py:4566] Model loading took 8.57 GiB memory and 26.246615 seconds
+2026-03-24T03:52:22.911410553Z (EngineCore pid=1055) INFO 03-24 03:52:22 [gpu_model_runner.py:5488] Encoder cache will be initialized with a budget of 2450 tokens, and profiled with 1 image items of the maximum feature size.
+2026-03-24T03:52:35.560022892Z (EngineCore pid=1055) INFO 03-24 03:52:35 [backends.py:988] Using cache directory: /root/.cache/vllm/torch_compile_cache/c9fda91e53/rank_0_0/backbone for vLLM's torch.compile
+2026-03-24T03:52:35.560634519Z (EngineCore pid=1055) INFO 03-24 03:52:35 [backends.py:1048] Dynamo bytecode transform time: 11.14 s
+2026-03-24T03:52:39.861864647Z (EngineCore pid=1055) INFO 03-24 03:52:39 [backends.py:371] Cache the graph of compile range (1, 2048) for later use
+2026-03-24T03:53:00.639755006Z (EngineCore pid=1055) INFO 03-24 03:53:00 [backends.py:387] Compiling a graph for compile range (1, 2048) takes 24.42 s
+2026-03-24T03:53:03.497412059Z (EngineCore pid=1055) INFO 03-24 03:53:03 [decorators.py:627] saved AOT compiled function to /root/.cache/vllm/torch_compile_cache/torch_aot_compile/bae2fc66090f5959c7afad8ff9fb71597d7b93d316f39330555b30dd7f4ff1b1/rank_0_0/model
+2026-03-24T03:53:03.497464566Z (EngineCore pid=1055) INFO 03-24 03:53:03 [monitor.py:48] torch.compile took 39.08 s in total
+2026-03-24T03:53:03.931440762Z (EngineCore pid=1055) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (16) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T03:53:03.931481009Z (EngineCore pid=1055)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T03:54:33.133263563Z (EngineCore pid=1055) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (16) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T03:54:33.133318046Z (EngineCore pid=1055)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T03:54:33.945423415Z (EngineCore pid=1055) INFO 03-24 03:54:33 [monitor.py:76] Initial profiling/warmup run took 90.45 s
+2026-03-24T03:54:35.134803569Z (EngineCore pid=1055) INFO 03-24 03:54:35 [backends.py:988] Using cache directory: /root/.cache/vllm/torch_compile_cache/c9fda91e53/rank_0_0/eagle_head for vLLM's torch.compile
+2026-03-24T03:54:35.135145149Z (EngineCore pid=1055) INFO 03-24 03:54:35 [backends.py:1048] Dynamo bytecode transform time: 1.19 s
+2026-03-24T03:54:42.300569258Z (EngineCore pid=1055) INFO 03-24 03:54:42 [backends.py:387] Compiling a graph for compile range (1, 2048) takes 7.15 s
+2026-03-24T03:54:42.442054141Z (EngineCore pid=1055) INFO 03-24 03:54:42 [decorators.py:627] saved AOT compiled function to /root/.cache/vllm/torch_compile_cache/torch_aot_compile/67c3ebdcd9febcffb238543857ebcf04ce89d45d3f8a99d851d0c765428a39b4/rank_0_0/model
+2026-03-24T03:54:42.442092646Z (EngineCore pid=1055) INFO 03-24 03:54:42 [monitor.py:48] torch.compile took 8.49 s in total
+2026-03-24T03:54:42.757452783Z (EngineCore pid=1055) INFO 03-24 03:54:42 [monitor.py:76] Initial profiling/warmup run took 0.32 s
+2026-03-24T03:54:52.359857895Z (EngineCore pid=1055) WARNING 03-24 03:54:52 [kv_cache_utils.py:1056] Add 3 padding layers, may waste at most 12.50% KV cache memory
+2026-03-24T03:54:52.359990738Z (EngineCore pid=1055) INFO 03-24 03:54:52 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512
+2026-03-24T03:54:52.375033765Z (EngineCore pid=1055) INFO 03-24 03:54:52 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=50 (largest=512), FULL=50 (largest=512)
+2026-03-24T03:55:59.395534006Z (EngineCore pid=1055) INFO 03-24 03:55:59 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.56 GiB total
+2026-03-24T03:55:59.800796438Z (EngineCore pid=1055) INFO 03-24 03:55:59 [gpu_worker.py:456] Available KV cache memory: 24.94 GiB
+2026-03-24T03:55:59.801890448Z (EngineCore pid=1055) INFO 03-24 03:55:59 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.8000 to 0.8126 to maintain the same effective KV cache size.
+2026-03-24T03:55:59.803920811Z (EngineCore pid=1055) WARNING 03-24 03:55:59 [kv_cache_utils.py:1056] Add 3 padding layers, may waste at most 12.50% KV cache memory
+2026-03-24T03:55:59.805427850Z (EngineCore pid=1055) INFO 03-24 03:55:59 [kv_cache_utils.py:1316] GPU KV cache size: 181,104 tokens
+2026-03-24T03:55:59.806733527Z (EngineCore pid=1055) INFO 03-24 03:55:59 [kv_cache_utils.py:1321] Maximum concurrency for 8,192 tokens per request: 55.00x
+2026-03-24T03:56:03.822686652Z (EngineCore pid=1055) Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/50 [00:00<?, ?it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   2%|▏         | 1/50 [00:00<00:05,  9.65it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/50 [00:00<00:04,  9.68it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   6%|▌         | 3/50 [00:00<00:04,  9.72it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/50 [00:00<00:04,  9.78it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/50 [00:00<00:04, 10.05it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  14%|█▍        | 7/50 [00:00<00:04, 10.00it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/50 [00:00<00:04,  9.96it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|██        | 10/50 [00:00<00:03, 10.26it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▍       | 12/50 [00:01<00:03, 10.43it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  28%|██▊       | 14/50 [00:01<00:03, 10.90it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  32%|███▏      | 16/50 [00:01<00:03, 11.23it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  36%|███▌      | 18/50 [00:01<00:02, 11.86it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  40%|████      | 20/50 [00:01<00:02, 12.38it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  44%|████▍     | 22/50 [00:01<00:02, 12.77it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  48%|████▊     | 24/50 [00:02<00:01, 13.09it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  52%|█████▏    | 26/50 [00:02<00:01, 13.72it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  56%|█████▌    | 28/50 [00:02<00:01, 14.09it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  60%|██████    | 30/50 [00:02<00:01, 14.41it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  64%|██████▍   | 32/50 [00:02<00:01, 14.74it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  68%|██████▊   | 34/50 [00:02<00:01, 15.42it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  72%|███████▏  | 36/50 [00:02<00:00, 15.89it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▌  | 38/50 [00:02<00:00, 16.31it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  80%|████████  | 40/50 [00:03<00:00, 16.48it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  86%|████████▌ | 43/50 [00:03<00:00, 17.89it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 46/50 [00:03<00:00, 18.91it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  98%|█████████▊| 49/50 [00:03<00:00, 19.82it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 50/50 [00:03<00:00, 14.03it/s]
+2026-03-24T03:56:27.957766627Z (EngineCore pid=1055) Capturing CUDA graphs (decode, FULL):   0%|          | 0/50 [00:00<?, ?it/s]Capturing CUDA graphs (decode, FULL):   2%|▏         | 1/50 [00:00<00:34,  1.41it/s]Capturing CUDA graphs (decode, FULL):   4%|▍         | 2/50 [00:01<00:27,  1.76it/s]Capturing CUDA graphs (decode, FULL):   6%|▌         | 3/50 [00:01<00:20,  2.29it/s]Capturing CUDA graphs (decode, FULL):   8%|▊         | 4/50 [00:01<00:17,  2.68it/s]Capturing CUDA graphs (decode, FULL):  10%|█         | 5/50 [00:01<00:14,  3.02it/s]Capturing CUDA graphs (decode, FULL):  12%|█▏        | 6/50 [00:02<00:13,  3.25it/s]Capturing CUDA graphs (decode, FULL):  14%|█▍        | 7/50 [00:02<00:12,  3.44it/s]Capturing CUDA graphs (decode, FULL):  16%|█▌        | 8/50 [00:02<00:11,  3.60it/s]Capturing CUDA graphs (decode, FULL):  18%|█▊        | 9/50 [00:02<00:10,  3.78it/s]Capturing CUDA graphs (decode, FULL):  20%|██        | 10/50 [00:03<00:10,  3.93it/s]Capturing CUDA graphs (decode, FULL):  22%|██▏       | 11/50 [00:03<00:09,  4.06it/s]Capturing CUDA graphs (decode, FULL):  24%|██▍       | 12/50 [00:03<00:09,  4.19it/s]Capturing CUDA graphs (decode, FULL):  26%|██▌       | 13/50 [00:03<00:08,  4.39it/s]Capturing CUDA graphs (decode, FULL):  28%|██▊       | 14/50 [00:04<00:07,  4.55it/s]Capturing CUDA graphs (decode, FULL):  30%|███       | 15/50 [00:04<00:07,  4.71it/s]Capturing CUDA graphs (decode, FULL):  32%|███▏      | 16/50 [00:04<00:06,  4.89it/s]Capturing CUDA graphs (decode, FULL):  34%|███▍      | 17/50 [00:04<00:06,  5.13it/s]Capturing CUDA graphs (decode, FULL):  36%|███▌      | 18/50 [00:05<00:08,  3.66it/s]Capturing CUDA graphs (decode, FULL):  38%|███▊      | 19/50 [00:05<00:07,  4.14it/s]Capturing CUDA graphs (decode, FULL):  40%|████      | 20/50 [00:05<00:06,  4.57it/s]Capturing CUDA graphs (decode, FULL):  42%|████▏     | 21/50 [00:05<00:05,  4.97it/s]Capturing CUDA graphs (decode, FULL):  44%|████▍     | 22/50 [00:05<00:05,  5.32it/s]Capturing CUDA graphs (decode, FULL):  46%|████▌     | 23/50 [00:05<00:04,  5.60it/s]Capturing CUDA graphs (decode, FULL):  48%|████▊     | 24/50 [00:06<00:04,  5.87it/s]Capturing CUDA graphs (decode, FULL):  50%|█████     | 25/50 [00:06<00:04,  6.23it/s]Capturing CUDA graphs (decode, FULL):  52%|█████▏    | 26/50 [00:06<00:03,  6.45it/s]Capturing CUDA graphs (decode, FULL):  54%|█████▍    | 27/50 [00:06<00:03,  6.67it/s]Capturing CUDA graphs (decode, FULL):  56%|█████▌    | 28/50 [00:06<00:03,  6.91it/s]Capturing CUDA graphs (decode, FULL):  58%|█████▊    | 29/50 [00:06<00:02,  7.14it/s]Capturing CUDA graphs (decode, FULL):  60%|██████    | 30/50 [00:06<00:02,  7.36it/s]Capturing CUDA graphs (decode, FULL):  62%|██████▏   | 31/50 [00:06<00:02,  7.59it/s]Capturing CUDA graphs (decode, FULL):  64%|██████▍   | 32/50 [00:07<00:02,  7.79it/s]Capturing CUDA graphs (decode, FULL):  66%|██████▌   | 33/50 [00:07<00:02,  8.11it/s]Capturing CUDA graphs (decode, FULL):  68%|██████▊   | 34/50 [00:07<00:01,  8.34it/s]Capturing CUDA graphs (decode, FULL):  70%|███████   | 35/50 [00:07<00:01,  8.60it/s]Capturing CUDA graphs (decode, FULL):  72%|███████▏  | 36/50 [00:07<00:01,  8.84it/s]Capturing CUDA graphs (decode, FULL):  76%|███████▌  | 38/50 [00:07<00:01,  9.39it/s]Capturing CUDA graphs (decode, FULL):  80%|████████  | 40/50 [00:07<00:01,  9.96it/s]Capturing CUDA graphs (decode, FULL):  84%|████████▍ | 42/50 [00:08<00:00, 10.60it/s]Capturing CUDA graphs (decode, FULL):  88%|████████▊ | 44/50 [00:08<00:00, 11.09it/s]Capturing CUDA graphs (decode, FULL):  88%|████████▊ | 44/50 [00:20<00:00, 11.09it/s]Capturing CUDA graphs (decode, FULL):  90%|█████████ | 45/50 [00:24<00:15,  3.18s/it]/usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (24) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T03:56:27.957860431Z (EngineCore pid=1055)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T03:56:28.043655339Z (EngineCore pid=1055) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (16) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T03:56:28.043696988Z (EngineCore pid=1055)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T03:56:42.170283665Z (EngineCore pid=1055) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (16) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T03:56:42.170333177Z (EngineCore pid=1055)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T03:56:42.249816145Z (EngineCore pid=1055) Capturing CUDA graphs (decode, FULL):  94%|█████████▍| 47/50 [00:38<00:13,  4.61s/it]/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1181: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (8) < num_heads (16). This may indicate the inputs were passed in head-first format [B, H, T, ...] Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T03:56:42.249864145Z (EngineCore pid=1055)   return fn(*args, **kwargs)
+2026-03-24T03:56:42.250062571Z (EngineCore pid=1055) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (8) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T03:56:42.250089491Z (EngineCore pid=1055)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T03:56:42.328511877Z (EngineCore pid=1055) /usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1181: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (4) < num_heads (16). This may indicate the inputs were passed in head-first format [B, H, T, ...] Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T03:56:42.328559583Z (EngineCore pid=1055)   return fn(*args, **kwargs)
+2026-03-24T03:56:42.328675923Z (EngineCore pid=1055) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (4) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T03:56:42.328706763Z (EngineCore pid=1055)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T03:56:42.404957123Z (EngineCore pid=1055) Capturing CUDA graphs (decode, FULL):  98%|█████████▊| 49/50 [00:38<00:03,  3.07s/it]/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1181: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (2) < num_heads (16). This may indicate the inputs were passed in head-first format [B, H, T, ...] Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T03:56:42.405005442Z (EngineCore pid=1055)   return fn(*args, **kwargs)
+2026-03-24T03:56:42.405208049Z (EngineCore pid=1055) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (2) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T03:56:42.405276833Z (EngineCore pid=1055)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T03:56:42.648669912Z (EngineCore pid=1055) Capturing CUDA graphs (decode, FULL): 100%|██████████| 50/50 [00:38<00:00,  1.29it/s]
+2026-03-24T03:56:43.133697840Z (EngineCore pid=1055) INFO 03-24 03:56:43 [gpu_model_runner.py:5746] Graph capturing finished in 43 secs, took 0.80 GiB
+2026-03-24T03:56:43.133732600Z (EngineCore pid=1055) INFO 03-24 03:56:43 [gpu_worker.py:617] CUDA graph pool memory: 0.8 GiB (actual), 0.56 GiB (estimated), difference: 0.25 GiB (30.7%).
+2026-03-24T03:56:43.222903717Z (EngineCore pid=1055) INFO 03-24 03:56:43 [core.py:281] init engine (profile, create kv cache, warmup model) took 260.56 seconds
+2026-03-24T03:56:43.656930909Z (EngineCore pid=1055) INFO 03-24 03:56:43 [vllm.py:754] Asynchronous scheduling is enabled.
+2026-03-24T03:56:43.845627158Z (APIServer pid=52) INFO 03-24 03:56:43 [api_server.py:576] Supported tasks: ['generate']
+2026-03-24T03:56:46.966185797Z (APIServer pid=52) INFO 03-24 03:56:46 [hf.py:320] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+2026-03-24T03:56:52.553062531Z (APIServer pid=52) INFO 03-24 03:56:52 [base.py:216] Multi-modal warmup completed in 5.552s
+2026-03-24T03:56:52.625863353Z (APIServer pid=52) INFO 03-24 03:56:52 [api_server.py:580] Starting vLLM server on http://0.0.0.0:8000
+2026-03-24T03:56:52.625905330Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:37] Available routes are:
+2026-03-24T03:56:52.626007180Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /openapi.json, Methods: HEAD, GET
+2026-03-24T03:56:52.626033643Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /docs, Methods: HEAD, GET
+2026-03-24T03:56:52.626038547Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /docs/oauth2-redirect, Methods: HEAD, GET
+2026-03-24T03:56:52.626043755Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /redoc, Methods: HEAD, GET
+2026-03-24T03:56:52.626054535Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /tokenize, Methods: POST
+2026-03-24T03:56:52.626069713Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /detokenize, Methods: POST
+2026-03-24T03:56:52.626125527Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /load, Methods: GET
+2026-03-24T03:56:52.626136375Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /version, Methods: GET
+2026-03-24T03:56:52.626158597Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /health, Methods: GET
+2026-03-24T03:56:52.626199443Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /metrics, Methods: GET
+2026-03-24T03:56:52.626264730Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /v1/models, Methods: GET
+2026-03-24T03:56:52.626291937Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /ping, Methods: GET
+2026-03-24T03:56:52.626309007Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /ping, Methods: POST
+2026-03-24T03:56:52.626313845Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /invocations, Methods: POST
+2026-03-24T03:56:52.626330220Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /v1/chat/completions, Methods: POST
+2026-03-24T03:56:52.626358193Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /v1/responses, Methods: POST
+2026-03-24T03:56:52.626386560Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /v1/responses/{response_id}, Methods: GET
+2026-03-24T03:56:52.626405055Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /v1/responses/{response_id}/cancel, Methods: POST
+2026-03-24T03:56:52.626455033Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /v1/completions, Methods: POST
+2026-03-24T03:56:52.626492207Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /v1/messages, Methods: POST
+2026-03-24T03:56:52.626503210Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /v1/messages/count_tokens, Methods: POST
+2026-03-24T03:56:52.626508400Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /inference/v1/generate, Methods: POST
+2026-03-24T03:56:52.626551887Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /scale_elastic_ep, Methods: POST
+2026-03-24T03:56:52.626559207Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /is_scaling_elastic_ep, Methods: POST
+2026-03-24T03:56:52.626594073Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /v1/chat/completions/render, Methods: POST
+2026-03-24T03:56:52.626609687Z (APIServer pid=52) INFO 03-24 03:56:52 [launcher.py:46] Route: /v1/completions/render, Methods: POST
+2026-03-24T03:56:52.713487888Z (APIServer pid=52) INFO:     Started server process [52]
+2026-03-24T03:56:52.713525802Z (APIServer pid=52) INFO:     Waiting for application startup.
+2026-03-24T03:56:53.063625393Z (APIServer pid=52) INFO:     Application startup complete.
+2026-03-24T03:57:35.503590277Z (APIServer pid=52) INFO:     100.64.1.33:39940 - "GET /v1/models HTTP/1.1" 200 OK
+2026-03-24T03:57:55.546867704Z (APIServer pid=52) INFO:     100.64.1.34:49292 - "GET /v1/models HTTP/1.1" 200 OK
+2026-03-24T03:57:58.932324284Z (APIServer pid=52) Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+2026-03-24T03:57:58.939722568Z (APIServer pid=52) INFO:     100.64.1.36:54292 - "POST /v1/chat/completions HTTP/1.1" 400 Bad Request
+2026-03-24T03:57:58.947767378Z (APIServer pid=52) ERROR:    Exception in ASGI application
+2026-03-24T03:57:58.947778884Z (APIServer pid=52) Traceback (most recent call last):
+2026-03-24T03:57:58.947781843Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/multimodal/processing/context.py", line 267, in call_hf_processor
+2026-03-24T03:57:58.947784992Z (APIServer pid=52)     output = hf_processor(**data, **allowed_kwargs, return_tensors="pt")
+2026-03-24T03:57:58.947787829Z (APIServer pid=52)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.947789954Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/transformers/models/qwen3_vl/processing_qwen3_vl.py", line 239, in __call__
+2026-03-24T03:57:58.947792324Z (APIServer pid=52)     self._check_special_mm_tokens(text, text_inputs, modalities=["image", "video"])
+2026-03-24T03:57:58.947794922Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/transformers/processing_utils.py", line 1772, in _check_special_mm_tokens
+2026-03-24T03:57:58.947797341Z (APIServer pid=52)     raise ValueError(
+2026-03-24T03:57:58.947800092Z (APIServer pid=52) ValueError: Mismatch in `image` token count between text and `input_ids`. Got ids=[2047] and text=[2400]. Likely due to `truncation='max_length'`. Please disable truncation or increase `max_length`.
+2026-03-24T03:57:58.947803337Z (APIServer pid=52)
+2026-03-24T03:57:58.947806009Z (APIServer pid=52) The above exception was the direct cause of the following exception:
+2026-03-24T03:57:58.947808343Z (APIServer pid=52)
+2026-03-24T03:57:58.947810752Z (APIServer pid=52) Traceback (most recent call last):
+2026-03-24T03:57:58.947812989Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+2026-03-24T03:57:58.947815409Z (APIServer pid=52)     result = await app(  # type: ignore[func-returns-value]
+2026-03-24T03:57:58.947817984Z (APIServer pid=52)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.947820406Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+2026-03-24T03:57:58.947822854Z (APIServer pid=52)     return await self.app(scope, receive, send)
+2026-03-24T03:57:58.947836513Z (APIServer pid=52)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.947839474Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/fastapi/applications.py", line 1159, in __call__
+2026-03-24T03:57:58.947841930Z (APIServer pid=52)     await super().__call__(scope, receive, send)
+2026-03-24T03:57:58.947884974Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/starlette/applications.py", line 107, in __call__
+2026-03-24T03:57:58.947894579Z (APIServer pid=52)     await self.middleware_stack(scope, receive, send)
+2026-03-24T03:57:58.947900399Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-03-24T03:57:58.947905439Z (APIServer pid=52)     raise exc
+2026-03-24T03:57:58.947910934Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-03-24T03:57:58.947915782Z (APIServer pid=52)     await self.app(scope, receive, _send)
+2026-03-24T03:57:58.947921086Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/cors.py", line 87, in __call__
+2026-03-24T03:57:58.947925739Z (APIServer pid=52)     await self.app(scope, receive, send)
+2026-03-24T03:57:58.947930584Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/prometheus_fastapi_instrumentator/middleware.py", line 177, in __call__
+2026-03-24T03:57:58.947935606Z (APIServer pid=52)     raise exc
+2026-03-24T03:57:58.947940344Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/prometheus_fastapi_instrumentator/middleware.py", line 175, in __call__
+2026-03-24T03:57:58.947947964Z (APIServer pid=52)     await self.app(scope, receive, send_wrapper)
+2026-03-24T03:57:58.947952624Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-03-24T03:57:58.947957399Z (APIServer pid=52)     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-03-24T03:57:58.947962912Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-03-24T03:57:58.947967632Z (APIServer pid=52)     raise exc
+2026-03-24T03:57:58.947972109Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-03-24T03:57:58.947976679Z (APIServer pid=52)     await app(scope, receive, sender)
+2026-03-24T03:57:58.947981502Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-03-24T03:57:58.947986282Z (APIServer pid=52)     await self.app(scope, receive, send)
+2026-03-24T03:57:58.947993559Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+2026-03-24T03:57:58.947998586Z (APIServer pid=52)     await self.middleware_stack(scope, receive, send)
+2026-03-24T03:57:58.948004462Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+2026-03-24T03:57:58.948009494Z (APIServer pid=52)     await route.handle(scope, receive, send)
+2026-03-24T03:57:58.948014109Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+2026-03-24T03:57:58.948018774Z (APIServer pid=52)     await self.app(scope, receive, send)
+2026-03-24T03:57:58.948023296Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
+2026-03-24T03:57:58.948028066Z (APIServer pid=52)     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-03-24T03:57:58.948032594Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-03-24T03:57:58.948037136Z (APIServer pid=52)     raise exc
+2026-03-24T03:57:58.948041609Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-03-24T03:57:58.948067602Z (APIServer pid=52)     await app(scope, receive, sender)
+2026-03-24T03:57:58.948072586Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
+2026-03-24T03:57:58.948077269Z (APIServer pid=52)     response = await f(request)
+2026-03-24T03:57:58.948081954Z (APIServer pid=52)                ^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948086596Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
+2026-03-24T03:57:58.948091236Z (APIServer pid=52)     raw_response = await run_endpoint_function(
+2026-03-24T03:57:58.948095766Z (APIServer pid=52)                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948100254Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+2026-03-24T03:57:58.948104834Z (APIServer pid=52)     return await dependant.call(**values)
+2026-03-24T03:57:58.948109334Z (APIServer pid=52)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948148444Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/entrypoints/utils.py", line 95, in wrapper
+2026-03-24T03:57:58.948158154Z (APIServer pid=52)     return handler_task.result()
+2026-03-24T03:57:58.948162884Z (APIServer pid=52)            ^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948167414Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/entrypoints/utils.py", line 116, in wrapper
+2026-03-24T03:57:58.948172034Z (APIServer pid=52)     return await func(*args, **kwargs)
+2026-03-24T03:57:58.948176782Z (APIServer pid=52)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948182289Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/api_router.py", line 55, in create_chat_completion
+2026-03-24T03:57:58.948187454Z (APIServer pid=52)     generator = await handler.create_chat_completion(request, raw_request)
+2026-03-24T03:57:58.948192144Z (APIServer pid=52)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948196679Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 237, in create_chat_completion
+2026-03-24T03:57:58.948201484Z (APIServer pid=52)     result = await self.render_chat_request(request)
+2026-03-24T03:57:58.948206004Z (APIServer pid=52)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948210549Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/entrypoints/openai/chat_completion/serving.py", line 209, in render_chat_request
+2026-03-24T03:57:58.948215254Z (APIServer pid=52)     return await self.openai_serving_render.render_chat(request)
+2026-03-24T03:57:58.948220159Z (APIServer pid=52)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948224669Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/entrypoints/serve/render/serving.py", line 237, in render_chat
+2026-03-24T03:57:58.948229379Z (APIServer pid=52)     conversation, engine_prompts = await self._preprocess_chat(
+2026-03-24T03:57:58.948233916Z (APIServer pid=52)                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948238714Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/entrypoints/serve/render/serving.py", line 528, in _preprocess_chat
+2026-03-24T03:57:58.948243394Z (APIServer pid=52)     (conversation,), (engine_prompt,) = await renderer.render_chat_async(
+2026-03-24T03:57:58.948247934Z (APIServer pid=52)                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948252616Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/renderers/base.py", line 826, in render_chat_async
+2026-03-24T03:57:58.948257146Z (APIServer pid=52)     self.process_for_engine(prompt, arrival_time) for prompt in tok_prompts
+2026-03-24T03:57:58.948261614Z (APIServer pid=52)     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948266184Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/renderers/base.py", line 718, in process_for_engine
+2026-03-24T03:57:58.948277326Z (APIServer pid=52)     engine_prompt = self._process_singleton(prompt)
+2026-03-24T03:57:58.948282222Z (APIServer pid=52)                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948287646Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/renderers/base.py", line 694, in _process_singleton
+2026-03-24T03:57:58.948292204Z (APIServer pid=52)     return self._process_tokens(prompt)  # type: ignore[arg-type]
+2026-03-24T03:57:58.948296726Z (APIServer pid=52)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948301244Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/renderers/base.py", line 639, in _process_tokens
+2026-03-24T03:57:58.948305936Z (APIServer pid=52)     inputs = self._process_multimodal(
+2026-03-24T03:57:58.948310414Z (APIServer pid=52)              ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948315016Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/renderers/base.py", line 625, in _process_multimodal
+2026-03-24T03:57:58.948319802Z (APIServer pid=52)     mm_inputs = mm_processor.apply(mm_processor_inputs, mm_timing_ctx)
+2026-03-24T03:57:58.948324606Z (APIServer pid=52)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948329216Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/multimodal/processing/processor.py", line 1659, in apply
+2026-03-24T03:57:58.948333919Z (APIServer pid=52)     ) = self._cached_apply_hf_processor(inputs, timing_ctx)
+2026-03-24T03:57:58.948338396Z (APIServer pid=52)         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948342952Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/multimodal/processing/processor.py", line 1448, in _cached_apply_hf_processor
+2026-03-24T03:57:58.948347639Z (APIServer pid=52)     ) = self._apply_hf_processor_main(
+2026-03-24T03:57:58.948352119Z (APIServer pid=52)         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948356719Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/multimodal/processing/processor.py", line 1265, in _apply_hf_processor_main
+2026-03-24T03:57:58.948361302Z (APIServer pid=52)     mm_processed_data = self._apply_hf_processor_mm_only(
+2026-03-24T03:57:58.948365952Z (APIServer pid=52)                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948370524Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/multimodal/processing/processor.py", line 1223, in _apply_hf_processor_mm_only
+2026-03-24T03:57:58.948375109Z (APIServer pid=52)     _, mm_processed_data, _ = self._apply_hf_processor_text_mm(
+2026-03-24T03:57:58.948379609Z (APIServer pid=52)                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948384839Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/multimodal/processing/processor.py", line 1150, in _apply_hf_processor_text_mm
+2026-03-24T03:57:58.948389534Z (APIServer pid=52)     processed_data = self._call_hf_processor(
+2026-03-24T03:57:58.948394272Z (APIServer pid=52)                      ^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948398924Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_vl.py", line 1078, in _call_hf_processor
+2026-03-24T03:57:58.948403616Z (APIServer pid=52)     processed_outputs = super()._call_hf_processor(
+2026-03-24T03:57:58.948408014Z (APIServer pid=52)                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948412489Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/multimodal/processing/processor.py", line 1107, in _call_hf_processor
+2026-03-24T03:57:58.948417156Z (APIServer pid=52)     return self.info.ctx.call_hf_processor(
+2026-03-24T03:57:58.948421654Z (APIServer pid=52)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-24T03:57:58.948426149Z (APIServer pid=52)   File "/usr/local/lib/python3.12/site-packages/vllm/multimodal/processing/context.py", line 296, in call_hf_processor
+2026-03-24T03:57:58.948430979Z (APIServer pid=52)     raise ValueError(msg) from exc
+2026-03-24T03:57:58.948442704Z (APIServer pid=52) ValueError: Failed to apply Qwen3VLProcessor on data={'text': '<|vision_start|><|image_pad|><|vision_end|>', 'images': [<PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=1920x1280 at 0x774B2B1504D0>]} with kwargs={'max_pixels': 2508800}
+2026-03-24T04:01:34.478870011Z (APIServer pid=52) INFO:     100.64.1.35:33108 - "GET /v1/models HTTP/1.1" 200 OK
+2026-03-24T04:01:38.512245360Z (APIServer pid=52) INFO:     100.64.1.34:40728 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-03-24T04:01:43.078525982Z (APIServer pid=52) INFO 03-24 04:01:43 [loggers.py:259] Engine 000: Avg prompt throughput: 115.9 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.7%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:01:43.079226227Z (APIServer pid=52) INFO 03-24 04:01:43 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.81, Accepted throughput: 0.25 tokens/s, Drafted throughput: 0.31 tokens/s, Accepted: 76 tokens, Drafted: 94 tokens, Per-position acceptance rate: 0.809, Avg Draft acceptance rate: 80.9%
+2026-03-24T04:01:53.080677209Z (APIServer pid=52) INFO 03-24 04:01:53 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 81.7 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.8%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:01:53.081659525Z (APIServer pid=52) INFO 03-24 04:01:53 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.66, Accepted throughput: 32.49 tokens/s, Drafted throughput: 49.19 tokens/s, Accepted: 325 tokens, Drafted: 492 tokens, Per-position acceptance rate: 0.661, Avg Draft acceptance rate: 66.1%
+2026-03-24T04:02:03.082669061Z (APIServer pid=52) INFO 03-24 04:02:03 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 78.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.9%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:02:03.083539421Z (APIServer pid=52) INFO 03-24 04:02:03 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.61, Accepted throughput: 30.00 tokens/s, Drafted throughput: 48.79 tokens/s, Accepted: 300 tokens, Drafted: 488 tokens, Per-position acceptance rate: 0.615, Avg Draft acceptance rate: 61.5%
+2026-03-24T04:02:13.084586446Z (APIServer pid=52) INFO 03-24 04:02:13 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 79.5 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.0%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:02:13.085450689Z (APIServer pid=52) INFO 03-24 04:02:13 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.67, Accepted throughput: 31.80 tokens/s, Drafted throughput: 47.69 tokens/s, Accepted: 318 tokens, Drafted: 477 tokens, Per-position acceptance rate: 0.667, Avg Draft acceptance rate: 66.7%
+2026-03-24T04:02:23.086907191Z (APIServer pid=52) INFO 03-24 04:02:23 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 74.4 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.1%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:02:23.087803806Z (APIServer pid=52) INFO 03-24 04:02:23 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.59, Accepted throughput: 27.60 tokens/s, Drafted throughput: 46.79 tokens/s, Accepted: 276 tokens, Drafted: 468 tokens, Per-position acceptance rate: 0.590, Avg Draft acceptance rate: 59.0%
+2026-03-24T04:02:33.088182105Z (APIServer pid=52) INFO 03-24 04:02:33 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 74.2 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.2%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:02:33.088598145Z (APIServer pid=52) INFO 03-24 04:02:33 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.61, Accepted throughput: 28.10 tokens/s, Drafted throughput: 46.10 tokens/s, Accepted: 281 tokens, Drafted: 461 tokens, Per-position acceptance rate: 0.610, Avg Draft acceptance rate: 61.0%
+2026-03-24T04:02:43.089832940Z (APIServer pid=52) INFO 03-24 04:02:43 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 73.4 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:02:43.090698062Z (APIServer pid=52) INFO 03-24 04:02:43 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.63, Accepted throughput: 28.50 tokens/s, Drafted throughput: 44.89 tokens/s, Accepted: 285 tokens, Drafted: 449 tokens, Per-position acceptance rate: 0.635, Avg Draft acceptance rate: 63.5%
+2026-03-24T04:02:53.091087376Z (APIServer pid=52) INFO 03-24 04:02:53 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 65.2 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:02:53.092090770Z (APIServer pid=52) INFO 03-24 04:02:53 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.57, Accepted throughput: 23.70 tokens/s, Drafted throughput: 41.50 tokens/s, Accepted: 237 tokens, Drafted: 415 tokens, Per-position acceptance rate: 0.571, Avg Draft acceptance rate: 57.1%
+2026-03-24T04:03:03.093460031Z (APIServer pid=52) INFO 03-24 04:03:03 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%

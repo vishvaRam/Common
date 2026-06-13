@@ -1,0 +1,265 @@
+2026-03-24T04:26:47.945722627Z --- Starting SSH Service ---
+2026-03-24T04:26:47.945898777Z --- Preparing vLLM Command ---
+2026-03-24T04:26:47.945917740Z Model: Qwen/Qwen3.5-9B
+2026-03-24T04:26:47.947073543Z --- Executing Command ---
+2026-03-24T04:26:47.947085419Z vllm serve Qwen/Qwen3.5-9B --port 8000 --host 0.0.0.0 --max-model-len 8192 --trust-remote-code --kv-cache-dtype auto --gpu-memory-utilization 0.80 --speculative-config \{\"method\":\"mtp\"\,\"num_speculative_tokens\":1\} --tensor-parallel-size 1 --pipeline-parallel-size 1 --enable-prefix-caching --enable-chunked-prefill --mm-processor-kwargs \{\"max_pixels\":\ 5508800\}
+2026-03-24T04:26:47.947088411Z -------------------------
+2026-03-24T04:26:47.954745434Z Server listening on 0.0.0.0 port 22.
+2026-03-24T04:26:47.954762465Z Server listening on :: port 22.
+2026-03-24T04:26:51.121446822Z --- Starting SSH Service ---
+2026-03-24T04:26:51.121544779Z --- Preparing vLLM Command ---
+2026-03-24T04:26:51.121553717Z Model: Qwen/Qwen3.5-9B
+2026-03-24T04:26:51.122562634Z --- Executing Command ---
+2026-03-24T04:26:51.122586799Z vllm serve Qwen/Qwen3.5-9B --port 8000 --host 0.0.0.0 --max-model-len 8192 --trust-remote-code --kv-cache-dtype auto --gpu-memory-utilization 0.80 --speculative-config \{\"method\":\"mtp\"\,\"num_speculative_tokens\":1\} --tensor-parallel-size 1 --pipeline-parallel-size 1 --enable-prefix-caching --enable-chunked-prefill --mm-processor-kwargs \{\"max_pixels\":\ 5508800\}
+2026-03-24T04:26:51.122590996Z -------------------------
+2026-03-24T04:26:51.128848995Z Server listening on 0.0.0.0 port 22.
+2026-03-24T04:26:51.128881461Z Server listening on :: port 22.
+2026-03-24T04:27:10.302934965Z (APIServer pid=51) INFO 03-24 04:27:10 [utils.py:297]
+2026-03-24T04:27:10.302982253Z (APIServer pid=51) INFO 03-24 04:27:10 [utils.py:297]        █     █     █▄   ▄█
+2026-03-24T04:27:10.302989213Z (APIServer pid=51) INFO 03-24 04:27:10 [utils.py:297]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.18.0
+2026-03-24T04:27:10.302994235Z (APIServer pid=51) INFO 03-24 04:27:10 [utils.py:297]   █▄█▀ █     █     █     █  model   Qwen/Qwen3.5-9B
+2026-03-24T04:27:10.302998855Z (APIServer pid=51) INFO 03-24 04:27:10 [utils.py:297]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+2026-03-24T04:27:10.303003885Z (APIServer pid=51) INFO 03-24 04:27:10 [utils.py:297]
+2026-03-24T04:27:10.307331294Z (APIServer pid=51) INFO 03-24 04:27:10 [utils.py:233] non-default args: {'model_tag': 'Qwen/Qwen3.5-9B', 'host': '0.0.0.0', 'model': 'Qwen/Qwen3.5-9B', 'trust_remote_code': True, 'max_model_len': 8192, 'gpu_memory_utilization': 0.8, 'enable_prefix_caching': True, 'mm_processor_kwargs': {'max_pixels': 5508800}, 'enable_chunked_prefill': True, 'speculative_config': {'method': 'mtp', 'num_speculative_tokens': 1}}
+2026-03-24T04:27:10.516946929Z (APIServer pid=51) The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-03-24T04:27:21.018401595Z (APIServer pid=51) INFO 03-24 04:27:21 [model.py:533] Resolved architecture: Qwen3_5ForConditionalGeneration
+2026-03-24T04:27:21.018872282Z (APIServer pid=51) INFO 03-24 04:27:21 [model.py:1582] Using max model len 8192
+2026-03-24T04:27:21.062388315Z (APIServer pid=51) The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-03-24T04:27:30.344553210Z (APIServer pid=51) INFO 03-24 04:27:30 [model.py:533] Resolved architecture: Qwen3_5MTP
+2026-03-24T04:27:30.344595154Z (APIServer pid=51) INFO 03-24 04:27:30 [model.py:1582] Using max model len 262144
+2026-03-24T04:27:30.344904917Z (APIServer pid=51) INFO 03-24 04:27:30 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=2048.
+2026-03-24T04:27:30.345431037Z (APIServer pid=51) WARNING 03-24 04:27:30 [config.py:372] Mamba cache mode is set to 'align' for Qwen3_5ForConditionalGeneration by default when prefix caching is enabled
+2026-03-24T04:27:30.345471764Z (APIServer pid=51) INFO 03-24 04:27:30 [config.py:392] Warning: Prefix caching in Mamba cache 'align' mode is currently enabled. Its support for Mamba layers is experimental. Please report any issues you may observe.
+2026-03-24T04:27:30.551454830Z (APIServer pid=51) INFO 03-24 04:27:30 [config.py:212] Setting attention block size to 528 tokens to ensure that attention page size is >= mamba page size.
+2026-03-24T04:27:30.551480298Z (APIServer pid=51) INFO 03-24 04:27:30 [vllm.py:754] Asynchronous scheduling is enabled.
+2026-03-24T04:27:34.120562709Z (APIServer pid=51) The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-03-24T04:27:47.569336072Z (EngineCore pid=843) INFO 03-24 04:27:47 [core.py:103] Initializing a V1 LLM engine (v0.18.0) with config: model='Qwen/Qwen3.5-9B', speculative_config=SpeculativeConfig(method='mtp', model='Qwen/Qwen3.5-9B', num_spec_tokens=1), tokenizer='Qwen/Qwen3.5-9B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=Qwen/Qwen3.5-9B, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}
+2026-03-24T04:27:49.104245741Z (EngineCore pid=843) INFO 03-24 04:27:49 [parallel_state.py:1395] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.16.112.2:36673 backend=nccl
+2026-03-24T04:27:49.119020851Z (EngineCore pid=843) INFO 03-24 04:27:49 [parallel_state.py:1717] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+2026-03-24T04:27:49.738256441Z (EngineCore pid=843) WARNING 03-24 04:27:49 [__init__.py:204] min_p and logit_bias parameters won't work with speculative decoding.
+2026-03-24T04:27:55.989457575Z (EngineCore pid=843) INFO 03-24 04:27:55 [gpu_model_runner.py:4481] Starting to load model Qwen/Qwen3.5-9B...
+2026-03-24T04:27:56.494295980Z (EngineCore pid=843) INFO 03-24 04:27:56 [cuda.py:373] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+2026-03-24T04:27:56.495125383Z (EngineCore pid=843) INFO 03-24 04:27:56 [mm_encoder_attention.py:230] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+2026-03-24T04:27:56.538900027Z (EngineCore pid=843) INFO 03-24 04:27:56 [qwen3_next.py:198] Using Triton/FLA GDN prefill kernel
+2026-03-24T04:27:58.167153609Z (EngineCore pid=843) INFO 03-24 04:27:58 [cuda.py:317] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+2026-03-24T04:27:58.167466413Z (EngineCore pid=843) INFO 03-24 04:27:58 [flash_attn.py:598] Using FlashAttention version 2
+2026-03-24T04:27:58.432423465Z (EngineCore pid=843) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+2026-03-24T04:27:58.432740058Z (EngineCore pid=843) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+2026-03-24T04:28:08.654210424Z (EngineCore pid=843) INFO 03-24 04:28:08 [weight_utils.py:574] Time spent downloading weights for Qwen/Qwen3.5-9B: 10.081794 seconds
+2026-03-24T04:28:08.713545187Z (EngineCore pid=843) 
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+2026-03-24T04:28:09.464294040Z (EngineCore pid=843) 
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:02,  1.33it/s]
+2026-03-24T04:28:10.260188760Z (EngineCore pid=843) 
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.29it/s]
+2026-03-24T04:28:11.112089430Z (EngineCore pid=843) 
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:02<00:00,  1.23it/s]
+2026-03-24T04:28:11.815387859Z (EngineCore pid=843) 
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:03<00:00,  1.30it/s]
+2026-03-24T04:28:11.815434709Z (EngineCore pid=843) 
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:03<00:00,  1.29it/s]
+2026-03-24T04:28:11.815440264Z (EngineCore pid=843)
+2026-03-24T04:28:11.867200480Z (EngineCore pid=843) INFO 03-24 04:28:11 [default_loader.py:384] Loading weights took 3.16 seconds
+2026-03-24T04:28:11.880794377Z (EngineCore pid=843) INFO 03-24 04:28:11 [gpu_model_runner.py:4505] Loading drafter model...
+2026-03-24T04:28:11.995817500Z (EngineCore pid=843) 
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+2026-03-24T04:28:12.548780204Z (EngineCore pid=843) 
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:01,  1.81it/s]
+2026-03-24T04:28:12.659090467Z (EngineCore pid=843) 
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:00<00:00,  3.42it/s]
+2026-03-24T04:28:12.714531879Z (EngineCore pid=843) 
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:00<00:00,  5.57it/s]
+2026-03-24T04:28:12.714557891Z (EngineCore pid=843)
+2026-03-24T04:28:12.716267638Z (EngineCore pid=843) INFO 03-24 04:28:12 [default_loader.py:384] Loading weights took 0.72 seconds
+2026-03-24T04:28:12.754208899Z (EngineCore pid=843) INFO 03-24 04:28:12 [eagle.py:1365] Detected MTP model. Sharing target model embedding weights with the draft model.
+2026-03-24T04:28:12.754233077Z (EngineCore pid=843) INFO 03-24 04:28:12 [eagle.py:1419] Detected MTP model. Sharing target model lm_head weights with the draft model.
+2026-03-24T04:28:13.294517433Z (EngineCore pid=843) INFO 03-24 04:28:13 [gpu_model_runner.py:4566] Model loading took 18.12 GiB memory and 16.304596 seconds
+2026-03-24T04:28:13.536747287Z (EngineCore pid=843) INFO 03-24 04:28:13 [gpu_model_runner.py:5488] Encoder cache will be initialized with a budget of 5379 tokens, and profiled with 1 image items of the maximum feature size.
+2026-03-24T04:28:22.029035497Z (EngineCore pid=843) INFO 03-24 04:28:22 [backends.py:988] Using cache directory: /root/.cache/vllm/torch_compile_cache/ce518558c9/rank_0_0/backbone for vLLM's torch.compile
+2026-03-24T04:28:22.029401088Z (EngineCore pid=843) INFO 03-24 04:28:22 [backends.py:1048] Dynamo bytecode transform time: 6.92 s
+2026-03-24T04:28:24.464498784Z (EngineCore pid=843) INFO 03-24 04:28:24 [backends.py:371] Cache the graph of compile range (1, 2048) for later use
+2026-03-24T04:28:43.252182395Z (EngineCore pid=843) INFO 03-24 04:28:43 [backends.py:387] Compiling a graph for compile range (1, 2048) takes 20.94 s
+2026-03-24T04:28:45.094509899Z (EngineCore pid=843) INFO 03-24 04:28:45 [decorators.py:627] saved AOT compiled function to /root/.cache/vllm/torch_compile_cache/torch_aot_compile/df056730b3a4c13619dea8535eb337f29c9b2d4d4b4db23bd39cb314959e4d5a/rank_0_0/model
+2026-03-24T04:28:45.094557776Z (EngineCore pid=843) INFO 03-24 04:28:45 [monitor.py:48] torch.compile took 29.98 s in total
+2026-03-24T04:28:45.509320905Z (EngineCore pid=843) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (16) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T04:28:45.509366761Z (EngineCore pid=843)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T04:30:28.354359964Z (EngineCore pid=843) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (16) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T04:30:28.354413916Z (EngineCore pid=843)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T04:30:29.261231496Z (EngineCore pid=843) INFO 03-24 04:30:29 [monitor.py:76] Initial profiling/warmup run took 104.17 s
+2026-03-24T04:30:29.942809216Z (EngineCore pid=843) INFO 03-24 04:30:29 [backends.py:988] Using cache directory: /root/.cache/vllm/torch_compile_cache/ce518558c9/rank_0_0/eagle_head for vLLM's torch.compile
+2026-03-24T04:30:29.943089551Z (EngineCore pid=843) INFO 03-24 04:30:29 [backends.py:1048] Dynamo bytecode transform time: 0.68 s
+2026-03-24T04:30:35.756902565Z (EngineCore pid=843) INFO 03-24 04:30:35 [backends.py:387] Compiling a graph for compile range (1, 2048) takes 5.80 s
+2026-03-24T04:30:35.897809116Z (EngineCore pid=843) INFO 03-24 04:30:35 [decorators.py:627] saved AOT compiled function to /root/.cache/vllm/torch_compile_cache/torch_aot_compile/79f2ca53568263b748aa363eb69f2dab8a96e04f56f3038e5e93fbd37a1f7613/rank_0_0/model
+2026-03-24T04:30:35.897838970Z (EngineCore pid=843) INFO 03-24 04:30:35 [monitor.py:48] torch.compile took 6.63 s in total
+2026-03-24T04:30:36.026190726Z (EngineCore pid=843) INFO 03-24 04:30:36 [monitor.py:76] Initial profiling/warmup run took 0.13 s
+2026-03-24T04:30:47.193689191Z (EngineCore pid=843) WARNING 03-24 04:30:47 [kv_cache_utils.py:1056] Add 3 padding layers, may waste at most 12.50% KV cache memory
+2026-03-24T04:30:47.193973470Z (EngineCore pid=843) INFO 03-24 04:30:47 [kv_cache_utils.py:826] Overriding num_gpu_blocks=0 with num_gpu_blocks_override=512
+2026-03-24T04:30:47.233764495Z (EngineCore pid=843) INFO 03-24 04:30:47 [gpu_model_runner.py:5607] Profiling CUDA graph memory: PIECEWISE=50 (largest=512), FULL=50 (largest=512)
+2026-03-24T04:32:00.716574753Z (EngineCore pid=843) INFO 03-24 04:32:00 [gpu_model_runner.py:5686] Estimated CUDA graph memory: 0.56 GiB total
+2026-03-24T04:32:01.148956188Z (EngineCore pid=843) INFO 03-24 04:32:01 [gpu_worker.py:456] Available KV cache memory: 15.33 GiB
+2026-03-24T04:32:01.149993989Z (EngineCore pid=843) INFO 03-24 04:32:01 [gpu_worker.py:490] In v0.19, CUDA graph memory profiling will be enabled by default (VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1), which more accurately accounts for CUDA graph memory during KV cache allocation. To try it now, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=1 and increase --gpu-memory-utilization from 0.8000 to 0.8126 to maintain the same effective KV cache size.
+2026-03-24T04:32:01.151987169Z (EngineCore pid=843) WARNING 03-24 04:32:01 [kv_cache_utils.py:1056] Add 3 padding layers, may waste at most 12.50% KV cache memory
+2026-03-24T04:32:01.153605561Z (EngineCore pid=843) INFO 03-24 04:32:01 [kv_cache_utils.py:1316] GPU KV cache size: 111,408 tokens
+2026-03-24T04:32:01.154952723Z (EngineCore pid=843) INFO 03-24 04:32:01 [kv_cache_utils.py:1321] Maximum concurrency for 8,192 tokens per request: 33.80x
+2026-03-24T04:32:05.160628852Z (EngineCore pid=843) 
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/50 [00:00<?, ?it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   4%|▍         | 2/50 [00:00<00:04, 10.27it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   8%|▊         | 4/50 [00:00<00:04, 10.38it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/50 [00:00<00:04, 10.39it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▌        | 8/50 [00:00<00:04, 10.34it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  20%|██        | 10/50 [00:00<00:03, 10.74it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▍       | 12/50 [00:01<00:03, 11.15it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  28%|██▊       | 14/50 [00:01<00:03, 11.24it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  32%|███▏      | 16/50 [00:01<00:02, 11.38it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  36%|███▌      | 18/50 [00:01<00:02, 11.94it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  40%|████      | 20/50 [00:01<00:02, 12.45it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  44%|████▍     | 22/50 [00:01<00:02, 12.78it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  48%|████▊     | 24/50 [00:02<00:01, 13.00it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  52%|█████▏    | 26/50 [00:02<00:01, 13.54it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  56%|█████▌    | 28/50 [00:02<00:01, 13.84it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  60%|██████    | 30/50 [00:02<00:01, 14.27it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  64%|██████▍   | 32/50 [00:02<00:01, 14.63it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  68%|██████▊   | 34/50 [00:02<00:01, 15.13it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  72%|███████▏  | 36/50 [00:02<00:00, 15.63it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▌  | 38/50 [00:02<00:00, 15.95it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  80%|████████  | 40/50 [00:03<00:00, 16.17it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 42/50 [00:03<00:00, 16.38it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  88%|████████▊ | 44/50 [00:03<00:00, 16.68it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 46/50 [00:03<00:00, 16.99it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  96%|█████████▌| 48/50 [00:03<00:00, 17.51it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 50/50 [00:03<00:00, 17.88it/s]
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 50/50 [00:03<00:00, 13.83it/s]
+2026-03-24T04:32:29.103289438Z (EngineCore pid=843) 
+Capturing CUDA graphs (decode, FULL):   0%|          | 0/50 [00:00<?, ?it/s]
+Capturing CUDA graphs (decode, FULL):   2%|▏         | 1/50 [00:00<00:37,  1.32it/s]
+Capturing CUDA graphs (decode, FULL):   4%|▍         | 2/50 [00:01<00:29,  1.64it/s]
+Capturing CUDA graphs (decode, FULL):   6%|▌         | 3/50 [00:01<00:21,  2.17it/s]
+Capturing CUDA graphs (decode, FULL):   8%|▊         | 4/50 [00:01<00:17,  2.57it/s]
+Capturing CUDA graphs (decode, FULL):  10%|█         | 5/50 [00:02<00:15,  2.89it/s]
+Capturing CUDA graphs (decode, FULL):  12%|█▏        | 6/50 [00:02<00:14,  3.13it/s]
+Capturing CUDA graphs (decode, FULL):  14%|█▍        | 7/50 [00:02<00:12,  3.34it/s]
+Capturing CUDA graphs (decode, FULL):  16%|█▌        | 8/50 [00:02<00:11,  3.52it/s]
+Capturing CUDA graphs (decode, FULL):  18%|█▊        | 9/50 [00:03<00:11,  3.71it/s]
+Capturing CUDA graphs (decode, FULL):  20%|██        | 10/50 [00:03<00:10,  3.89it/s]
+Capturing CUDA graphs (decode, FULL):  22%|██▏       | 11/50 [00:03<00:09,  4.06it/s]
+Capturing CUDA graphs (decode, FULL):  24%|██▍       | 12/50 [00:03<00:08,  4.23it/s]
+Capturing CUDA graphs (decode, FULL):  26%|██▌       | 13/50 [00:03<00:08,  4.40it/s]
+Capturing CUDA graphs (decode, FULL):  28%|██▊       | 14/50 [00:04<00:07,  4.57it/s]
+Capturing CUDA graphs (decode, FULL):  30%|███       | 15/50 [00:04<00:07,  4.74it/s]
+Capturing CUDA graphs (decode, FULL):  32%|███▏      | 16/50 [00:04<00:06,  4.92it/s]
+Capturing CUDA graphs (decode, FULL):  34%|███▍      | 17/50 [00:04<00:06,  5.12it/s]
+Capturing CUDA graphs (decode, FULL):  36%|███▌      | 18/50 [00:05<00:08,  3.63it/s]
+Capturing CUDA graphs (decode, FULL):  38%|███▊      | 19/50 [00:05<00:07,  4.10it/s]
+Capturing CUDA graphs (decode, FULL):  40%|████      | 20/50 [00:05<00:06,  4.53it/s]
+Capturing CUDA graphs (decode, FULL):  42%|████▏     | 21/50 [00:05<00:05,  4.90it/s]
+Capturing CUDA graphs (decode, FULL):  44%|████▍     | 22/50 [00:05<00:05,  5.23it/s]
+Capturing CUDA graphs (decode, FULL):  46%|████▌     | 23/50 [00:06<00:04,  5.49it/s]
+Capturing CUDA graphs (decode, FULL):  48%|████▊     | 24/50 [00:06<00:04,  5.74it/s]
+Capturing CUDA graphs (decode, FULL):  50%|█████     | 25/50 [00:06<00:04,  6.03it/s]
+Capturing CUDA graphs (decode, FULL):  52%|█████▏    | 26/50 [00:06<00:03,  6.33it/s]
+Capturing CUDA graphs (decode, FULL):  54%|█████▍    | 27/50 [00:06<00:03,  6.60it/s]
+Capturing CUDA graphs (decode, FULL):  56%|█████▌    | 28/50 [00:06<00:03,  6.85it/s]
+Capturing CUDA graphs (decode, FULL):  58%|█████▊    | 29/50 [00:06<00:02,  7.12it/s]
+Capturing CUDA graphs (decode, FULL):  60%|██████    | 30/50 [00:06<00:02,  7.37it/s]
+Capturing CUDA graphs (decode, FULL):  62%|██████▏   | 31/50 [00:07<00:02,  7.62it/s]
+Capturing CUDA graphs (decode, FULL):  64%|██████▍   | 32/50 [00:07<00:02,  7.71it/s]
+Capturing CUDA graphs (decode, FULL):  66%|██████▌   | 33/50 [00:07<00:02,  7.93it/s]
+Capturing CUDA graphs (decode, FULL):  68%|██████▊   | 34/50 [00:07<00:01,  8.18it/s]
+Capturing CUDA graphs (decode, FULL):  70%|███████   | 35/50 [00:07<00:01,  8.42it/s]
+Capturing CUDA graphs (decode, FULL):  72%|███████▏  | 36/50 [00:07<00:01,  8.67it/s]
+Capturing CUDA graphs (decode, FULL):  74%|███████▍  | 37/50 [00:07<00:01,  8.95it/s]
+Capturing CUDA graphs (decode, FULL):  76%|███████▌  | 38/50 [00:07<00:01,  9.22it/s]
+Capturing CUDA graphs (decode, FULL):  80%|████████  | 40/50 [00:08<00:01,  9.74it/s]
+Capturing CUDA graphs (decode, FULL):  84%|████████▍ | 42/50 [00:08<00:00, 10.32it/s]
+Capturing CUDA graphs (decode, FULL):  88%|████████▊ | 44/50 [00:08<00:00, 10.91it/s]
+Capturing CUDA graphs (decode, FULL):  88%|████████▊ | 44/50 [00:23<00:00, 10.91it/s]
+Capturing CUDA graphs (decode, FULL):  90%|█████████ | 45/50 [00:23<00:16,  3.26s/it]/usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (24) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T04:32:29.103388388Z (EngineCore pid=843)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T04:32:29.179219666Z (EngineCore pid=843) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (16) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T04:32:29.179264452Z (EngineCore pid=843)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T04:32:43.047765343Z (EngineCore pid=843) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (16) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T04:32:43.047816653Z (EngineCore pid=843)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T04:32:43.117334602Z (EngineCore pid=843) 
+Capturing CUDA graphs (decode, FULL):  94%|█████████▍| 47/50 [00:37<00:13,  4.65s/it]/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1181: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (8) < num_heads (16). This may indicate the inputs were passed in head-first format [B, H, T, ...] Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T04:32:43.117352292Z (EngineCore pid=843)   return fn(*args, **kwargs)
+2026-03-24T04:32:43.117561944Z (EngineCore pid=843) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (8) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T04:32:43.117596126Z (EngineCore pid=843)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T04:32:43.188557225Z (EngineCore pid=843) /usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1181: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (4) < num_heads (16). This may indicate the inputs were passed in head-first format [B, H, T, ...] Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T04:32:43.188582145Z (EngineCore pid=843)   return fn(*args, **kwargs)
+2026-03-24T04:32:43.188709972Z (EngineCore pid=843) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (4) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T04:32:43.188726402Z (EngineCore pid=843)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T04:32:43.256382057Z (EngineCore pid=843) 
+Capturing CUDA graphs (decode, FULL):  98%|█████████▊| 49/50 [00:38<00:03,  3.06s/it]/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1181: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (2) < num_heads (16). This may indicate the inputs were passed in head-first format [B, H, T, ...] Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T04:32:43.256426874Z (EngineCore pid=843)   return fn(*args, **kwargs)
+2026-03-24T04:32:43.256572562Z (EngineCore pid=843) /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fla/ops/utils.py:113: UserWarning: Input tensor shape suggests potential format mismatch: seq_len (2) < num_heads (32). This may indicate the inputs were passed in head-first format [B, H, T, ...] when head_first=False was specified. Please verify your input tensor format matches the expected shape [B, T, H, ...].
+2026-03-24T04:32:43.256583847Z (EngineCore pid=843)   return fn(*contiguous_args, **contiguous_kwargs)
+2026-03-24T04:32:43.496687509Z (EngineCore pid=843) 
+Capturing CUDA graphs (decode, FULL): 100%|██████████| 50/50 [00:38<00:00,  1.30it/s]
+2026-03-24T04:32:43.913265954Z (EngineCore pid=843) INFO 03-24 04:32:43 [gpu_model_runner.py:5746] Graph capturing finished in 43 secs, took 0.78 GiB
+2026-03-24T04:32:43.913312711Z (EngineCore pid=843) INFO 03-24 04:32:43 [gpu_worker.py:617] CUDA graph pool memory: 0.78 GiB (actual), 0.56 GiB (estimated), difference: 0.22 GiB (28.3%).
+2026-03-24T04:32:44.006679386Z (EngineCore pid=843) INFO 03-24 04:32:44 [core.py:281] init engine (profile, create kv cache, warmup model) took 270.71 seconds
+2026-03-24T04:32:44.390296058Z (EngineCore pid=843) INFO 03-24 04:32:44 [vllm.py:754] Asynchronous scheduling is enabled.
+2026-03-24T04:32:44.407191808Z (APIServer pid=51) INFO 03-24 04:32:44 [api_server.py:576] Supported tasks: ['generate']
+2026-03-24T04:32:44.875525619Z (APIServer pid=51) The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-03-24T04:32:45.008282481Z (APIServer pid=51) The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-03-24T04:32:45.174393463Z (APIServer pid=51) The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-03-24T04:32:47.307413970Z (APIServer pid=51) INFO 03-24 04:32:47 [hf.py:320] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+2026-03-24T04:32:52.729578809Z (APIServer pid=51) INFO 03-24 04:32:52 [base.py:216] Multi-modal warmup completed in 5.390s
+2026-03-24T04:32:52.800667042Z (APIServer pid=51) The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-03-24T04:32:52.969783657Z (APIServer pid=51) The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-03-24T04:32:53.050949794Z (APIServer pid=51) INFO 03-24 04:32:53 [api_server.py:580] Starting vLLM server on http://0.0.0.0:8000
+2026-03-24T04:32:53.050984430Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:37] Available routes are:
+2026-03-24T04:32:53.051074577Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /openapi.json, Methods: HEAD, GET
+2026-03-24T04:32:53.051109784Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /docs, Methods: HEAD, GET
+2026-03-24T04:32:53.051233843Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /docs/oauth2-redirect, Methods: HEAD, GET
+2026-03-24T04:32:53.051285354Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /redoc, Methods: HEAD, GET
+2026-03-24T04:32:53.051363110Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /tokenize, Methods: POST
+2026-03-24T04:32:53.051411354Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /detokenize, Methods: POST
+2026-03-24T04:32:53.051472240Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /load, Methods: GET
+2026-03-24T04:32:53.051515214Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /version, Methods: GET
+2026-03-24T04:32:53.051570643Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /health, Methods: GET
+2026-03-24T04:32:53.051612960Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /metrics, Methods: GET
+2026-03-24T04:32:53.051685684Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /v1/models, Methods: GET
+2026-03-24T04:32:53.051744144Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /ping, Methods: GET
+2026-03-24T04:32:53.051808424Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /ping, Methods: POST
+2026-03-24T04:32:53.051851523Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /invocations, Methods: POST
+2026-03-24T04:32:53.051911134Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /v1/chat/completions, Methods: POST
+2026-03-24T04:32:53.051973567Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /v1/responses, Methods: POST
+2026-03-24T04:32:53.052031203Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /v1/responses/{response_id}, Methods: GET
+2026-03-24T04:32:53.052085014Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /v1/responses/{response_id}/cancel, Methods: POST
+2026-03-24T04:32:53.052155507Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /v1/completions, Methods: POST
+2026-03-24T04:32:53.052198574Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /v1/messages, Methods: POST
+2026-03-24T04:32:53.052258854Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /v1/messages/count_tokens, Methods: POST
+2026-03-24T04:32:53.052308890Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /inference/v1/generate, Methods: POST
+2026-03-24T04:32:53.052367307Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /scale_elastic_ep, Methods: POST
+2026-03-24T04:32:53.052418727Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /is_scaling_elastic_ep, Methods: POST
+2026-03-24T04:32:53.052476713Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /v1/chat/completions/render, Methods: POST
+2026-03-24T04:32:53.052529334Z (APIServer pid=51) INFO 03-24 04:32:53 [launcher.py:46] Route: /v1/completions/render, Methods: POST
+2026-03-24T04:32:53.180204314Z (APIServer pid=51) INFO:     Started server process [51]
+2026-03-24T04:32:53.180241659Z (APIServer pid=51) INFO:     Waiting for application startup.
+2026-03-24T04:32:53.532715098Z (APIServer pid=51) INFO:     Application startup complete.
+2026-03-24T04:33:48.905838305Z (APIServer pid=51) INFO:     100.64.1.33:54432 - "GET /v1/models HTTP/1.1" 200 OK
+2026-03-24T04:33:51.539349006Z (APIServer pid=51) INFO:     100.64.1.33:54432 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-03-24T04:34:03.534540264Z (APIServer pid=51) INFO 03-24 04:34:03 [loggers.py:259] Engine 000: Avg prompt throughput: 115.9 tokens/s, Avg generation throughput: 41.0 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.1%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:34:03.535497083Z (APIServer pid=51) INFO 03-24 04:34:03 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.73, Accepted throughput: 2.17 tokens/s, Drafted throughput: 2.99 tokens/s, Accepted: 172 tokens, Drafted: 237 tokens, Per-position acceptance rate: 0.726, Avg Draft acceptance rate: 72.6%
+2026-03-24T04:34:13.536089133Z (APIServer pid=51) INFO 03-24 04:34:13 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 42.0 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.2%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:34:13.536767258Z (APIServer pid=51) INFO 03-24 04:34:13 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.64, Accepted throughput: 16.40 tokens/s, Drafted throughput: 25.60 tokens/s, Accepted: 164 tokens, Drafted: 256 tokens, Per-position acceptance rate: 0.641, Avg Draft acceptance rate: 64.1%
+2026-03-24T04:34:23.537750317Z (APIServer pid=51) INFO 03-24 04:34:23 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 41.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:34:23.538559970Z (APIServer pid=51) INFO 03-24 04:34:23 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.65, Accepted throughput: 16.50 tokens/s, Drafted throughput: 25.30 tokens/s, Accepted: 165 tokens, Drafted: 253 tokens, Per-position acceptance rate: 0.652, Avg Draft acceptance rate: 65.2%
+2026-03-24T04:34:33.539664070Z (APIServer pid=51) INFO 03-24 04:34:33 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 41.3 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.4%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:34:33.540197516Z (APIServer pid=51) INFO 03-24 04:34:33 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.63, Accepted throughput: 16.00 tokens/s, Drafted throughput: 25.30 tokens/s, Accepted: 160 tokens, Drafted: 253 tokens, Per-position acceptance rate: 0.632, Avg Draft acceptance rate: 63.2%
+2026-03-24T04:34:43.542019980Z (APIServer pid=51) INFO 03-24 04:34:43 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 39.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.5%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:34:43.542730253Z (APIServer pid=51) INFO 03-24 04:34:43 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.58, Accepted throughput: 14.60 tokens/s, Drafted throughput: 25.19 tokens/s, Accepted: 146 tokens, Drafted: 252 tokens, Per-position acceptance rate: 0.579, Avg Draft acceptance rate: 57.9%
+2026-03-24T04:34:53.543057397Z (APIServer pid=51) INFO 03-24 04:34:53 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 42.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.5%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:34:53.543754942Z (APIServer pid=51) INFO 03-24 04:34:53 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.72, Accepted throughput: 17.90 tokens/s, Drafted throughput: 24.90 tokens/s, Accepted: 179 tokens, Drafted: 249 tokens, Per-position acceptance rate: 0.719, Avg Draft acceptance rate: 71.9%
+2026-03-24T04:35:03.544012997Z (APIServer pid=51) INFO 03-24 04:35:03 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 41.0 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.7%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:35:03.544660472Z (APIServer pid=51) INFO 03-24 04:35:03 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.65, Accepted throughput: 16.20 tokens/s, Drafted throughput: 24.80 tokens/s, Accepted: 162 tokens, Drafted: 248 tokens, Per-position acceptance rate: 0.653, Avg Draft acceptance rate: 65.3%
+2026-03-24T04:35:13.545654986Z (APIServer pid=51) INFO 03-24 04:35:13 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 40.6 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.8%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:35:13.546357166Z (APIServer pid=51) INFO 03-24 04:35:13 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.64, Accepted throughput: 15.90 tokens/s, Drafted throughput: 24.70 tokens/s, Accepted: 159 tokens, Drafted: 247 tokens, Per-position acceptance rate: 0.644, Avg Draft acceptance rate: 64.4%
+2026-03-24T04:35:23.547009102Z (APIServer pid=51) INFO 03-24 04:35:23 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 39.0 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.9%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:35:23.547706226Z (APIServer pid=51) INFO 03-24 04:35:23 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.59, Accepted throughput: 14.40 tokens/s, Drafted throughput: 24.60 tokens/s, Accepted: 144 tokens, Drafted: 246 tokens, Per-position acceptance rate: 0.585, Avg Draft acceptance rate: 58.5%
+2026-03-24T04:35:33.549284669Z (APIServer pid=51) INFO 03-24 04:35:33 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 39.7 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.9%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:35:33.550038301Z (APIServer pid=51) INFO 03-24 04:35:33 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.63, Accepted throughput: 15.40 tokens/s, Drafted throughput: 24.30 tokens/s, Accepted: 154 tokens, Drafted: 243 tokens, Per-position acceptance rate: 0.634, Avg Draft acceptance rate: 63.4%
+2026-03-24T04:35:43.551818944Z (APIServer pid=51) INFO 03-24 04:35:43 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 29.7 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+2026-03-24T04:35:43.552377915Z (APIServer pid=51) INFO 03-24 04:35:43 [metrics.py:100] SpecDecoding metrics: Mean acceptance length: 1.62, Accepted throughput: 11.40 tokens/s, Drafted throughput: 18.30 tokens/s, Accepted: 114 tokens, Drafted: 183 tokens, Per-position acceptance rate: 0.623, Avg Draft acceptance rate: 62.3%
+2026-03-24T04:35:53.553284758Z (APIServer pid=51) INFO 03-24 04:35:53 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%

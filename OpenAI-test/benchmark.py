@@ -1,19 +1,31 @@
 import time
 import base64
 from openai import OpenAI
+from PIL import Image
+import io
 
 # -----------------------------
 # Function to encode image
 # -----------------------------
-def encode_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode('utf-8')
+def encode_image(image_path, max_size=(1280, 1280)):
+    with Image.open(image_path) as img:
+        # Convert to RGB to avoid alpha channel issues
+        img = img.convert("RGB")
+        
+        # Resize image while maintaining aspect ratio
+        img.thumbnail(max_size, Image.Resampling.LANCZOS)
+        
+        # Save to bytes buffer
+        buffer = io.BytesIO()
+        img.save(buffer, format="JPEG", quality=95)
+        
+        return base64.b64encode(buffer.getvalue()).decode('utf-8')
 
 # -----------------------------
 # Initialize Client
 # -----------------------------
 client = OpenAI(
-    base_url="https://v5li5nb34ewlq6-8000.proxy.runpod.net/v1",
+    base_url="https://ttbdm20v0dbmjl-8000.proxy.runpod.net/v1",
     api_key="token-abc123"
 )
 
@@ -82,7 +94,8 @@ def stream_response(stream, start_time):
 print("=========== VLM LONG GENERATION ===========\n")
 
 # 1. Encode the local image
-image_path = "./nature.jpg"
+image_path = "OpenAI-test/nature.jpg"
+
 base64_image = encode_image(image_path)
 
 # Record start time

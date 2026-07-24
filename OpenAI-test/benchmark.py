@@ -25,8 +25,8 @@ def encode_image(image_path, max_size=(1280, 1280)):
 # Initialize Client
 # -----------------------------
 client = OpenAI(
-    base_url="https://ttbdm20v0dbmjl-8000.proxy.runpod.net/v1",
-    api_key="token-abc123"
+    base_url="https://zkje1hzy73h1c5-6006.proxy.runpod.net/v1",
+    api_key="empty"
 )
 
 # -----------------------------

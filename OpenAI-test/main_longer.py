@@ -5,7 +5,7 @@ from openai import OpenAI
 # Initialize Client
 # -----------------------------
 client = OpenAI(
-    base_url="https://vyvzsztlxdoi7i-8000.proxy.runpod.net/v1",
+    base_url="https://4nk0qoi6v6fvqo-6006.proxy.runpod.net/v1",
     api_key="empty"
 )
 
@@ -18,33 +18,59 @@ print(f"\nUsing Model: {model_name}\n")
 
 
 # -----------------------------
-# Stream Printer + Token Counter
+# Stream Printer + Metrics Tracker
 # -----------------------------
 def stream_response(stream):
-
-    token_count = 0
-    start = time.time()
+    first_token_time = None
+    completion_tokens = 0
+    prompt_tokens = 0
+    start_time = time.time()
 
     for chunk in stream:
+        # 1. Capture stream usage stats if returned by the server (e.g., vLLM stream_options)
+        if hasattr(chunk, "usage") and chunk.usage:
+            prompt_tokens = chunk.usage.prompt_tokens
+            completion_tokens = chunk.usage.completion_tokens
 
         if not chunk.choices:
             continue
 
         delta = chunk.choices[0].delta
 
+        # 2. Track Time To First Token (TTFT) and stream output
         if hasattr(delta, "content") and delta.content:
+            if first_token_time is None:
+                first_token_time = time.time()
+
             text = delta.content
-            token_count += len(text.split())
+            # Fallback estimation in case API doesn't return chunk.usage
+            if completion_tokens == 0 or not hasattr(chunk, "usage") or not chunk.usage:
+                completion_tokens += 1
+
             print(text, end="", flush=True)
 
-    end = time.time()
+    end_time = time.time()
 
-    print("\n")
-    print("------ Throughput Stats ------")
-    print(f"Approx Tokens: {token_count}")
-    print(f"Time Taken: {round(end-start,2)} sec")
-    print(f"Approx Tokens/sec: {round(token_count/(end-start),2)}")
-    print("------------------------------\n")
+    # 3. Calculate Performance Metrics
+    ttft = (first_token_time - start_time) if first_token_time else 0
+    total_time = end_time - start_time
+    generation_time = (end_time - first_token_time) if first_token_time else total_time
+    throughput = completion_tokens / generation_time if generation_time > 0 else 0
+    tpot = (generation_time / completion_tokens) * 1000 if completion_tokens > 0 else 0
+
+    print("\n\n")
+    print("====== Inference Metrics ======")
+    print(f"Prompt Tokens:                  {prompt_tokens if prompt_tokens else 'N/A'}")
+    print(f"Output Tokens:                  {completion_tokens}")
+    print(f"Total Tokens:                   {prompt_tokens + completion_tokens}")
+    print("------------------------------------")
+    print(f"Time To First Token (Prefill):  {ttft:.3f} sec")
+    print(f"Generation Time (Decode):       {generation_time:.3f} sec")
+    print(f"Total Request Time:             {total_time:.3f} sec")
+    print("------------------------------------")
+    print(f"TPOT:                           {tpot:.2f} ms/token")
+    print(f"Output Throughput:              {throughput:.2f} tokens/sec")
+    print("====================================\n")
 
 
 # =====================================================
@@ -56,8 +82,8 @@ print("=========== LONG ARTICLE GENERATION ===========\n")
 stream = client.chat.completions.create(
     model=model_name,
     stream=True,
-    max_tokens=6000,   # allow very long output
-
+    max_tokens=10000,   # allow very long output
+    stream_options={"include_usage": True},  # Requests exact token counts from vLLM/OpenAI
     messages=[
         {
             "role": "system",

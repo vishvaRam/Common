@@ -1,11 +1,12 @@
 import time
+
 from openai import OpenAI
 
 # -----------------------------
 # Initialize Client
 # -----------------------------
 client = OpenAI(
-    base_url="https://4nk0qoi6v6fvqo-6006.proxy.runpod.net/v1",
+    base_url="https://j4nipsi0wer797-8000.proxy.runpod.net/v1",
     api_key="empty"
 )
 

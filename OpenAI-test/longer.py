@@ -6,9 +6,8 @@ from openai import OpenAI
 # Initialize Client
 # -----------------------------
 client = OpenAI(
-    base_url="https://j4nipsi0wer797-8000.proxy.runpod.net/v1",
-    api_key="empty"
-)
+    base_url="https://3s6oczsbq8l8ce-8000.proxy.runpod.net/v1", 
+    api_key="empty")
 
 # -----------------------------
 # Get Model
@@ -27,8 +26,12 @@ def stream_response(stream):
     prompt_tokens = 0
     start_time = time.time()
 
+    is_thinking = False
+    thought_printed_header = False
+    content_printed_header = False
+
     for chunk in stream:
-        # 1. Capture stream usage stats if returned by the server (e.g., vLLM stream_options)
+        # Capture usage stats if returned
         if hasattr(chunk, "usage") and chunk.usage:
             prompt_tokens = chunk.usage.prompt_tokens
             completion_tokens = chunk.usage.completion_tokens
@@ -38,21 +41,67 @@ def stream_response(stream):
 
         delta = chunk.choices[0].delta
 
-        # 2. Track Time To First Token (TTFT) and stream output
-        if hasattr(delta, "content") and delta.content:
+        # Extract delta attributes
+        reasoning_text = getattr(delta, "reasoning_content", None) or getattr(
+            delta, "reasoning", None
+        )
+        content_text = getattr(delta, "content", None)
+
+        # ---------------------------------------------------------
+        # Case A: Server sends reasoning in reasoning_content field
+        # ---------------------------------------------------------
+        if reasoning_text:
+            if first_token_time is None:
+                first_token_time = time.time()
+            if not thought_printed_header:
+                print("--- [THINKING PROCESS] ---\n", flush=True)
+                thought_printed_header = True
+
+            print(reasoning_text, end="", flush=True)
+
+            if completion_tokens == 0 or not hasattr(chunk, "usage") or not chunk.usage:
+                completion_tokens += 1
+            continue
+
+        # ---------------------------------------------------------
+        # Case B: Server sends reasoning inside <think> tags in content
+        # ---------------------------------------------------------
+        if content_text:
             if first_token_time is None:
                 first_token_time = time.time()
 
-            text = delta.content
-            # Fallback estimation in case API doesn't return chunk.usage
+            # Handle start of thinking block
+            if "<think>" in content_text:
+                is_thinking = True
+                if not thought_printed_header:
+                    print("--- [THINKING PROCESS] ---\n", flush=True)
+                    thought_printed_header = True
+                content_text = content_text.replace("<think>", "")
+
+            # Handle end of thinking block
+            if "</think>" in content_text:
+                parts = content_text.split("</think>")
+                print(parts[0], end="", flush=True)
+                print("\n\n--- [FINAL ANSWER] ---\n", flush=True)
+                is_thinking = False
+                content_printed_header = True
+                content_text = parts[1]
+
+            # Print current stream slice
+            if is_thinking:
+                print(content_text, end="", flush=True)
+            else:
+                if thought_printed_header and not content_printed_header:
+                    print("\n\n--- [FINAL ANSWER] ---\n", flush=True)
+                    content_printed_header = True
+                print(content_text, end="", flush=True)
+
             if completion_tokens == 0 or not hasattr(chunk, "usage") or not chunk.usage:
                 completion_tokens += 1
 
-            print(text, end="", flush=True)
-
     end_time = time.time()
 
-    # 3. Calculate Performance Metrics
+    # Performance Metrics
     ttft = (first_token_time - start_time) if first_token_time else 0
     total_time = end_time - start_time
     generation_time = (end_time - first_token_time) if first_token_time else total_time
@@ -61,7 +110,9 @@ def stream_response(stream):
 
     print("\n\n")
     print("====== Inference Metrics ======")
-    print(f"Prompt Tokens:                  {prompt_tokens if prompt_tokens else 'N/A'}")
+    print(
+        f"Prompt Tokens:                  {prompt_tokens if prompt_tokens else 'N/A'}"
+    )
     print(f"Output Tokens:                  {completion_tokens}")
     print(f"Total Tokens:                   {prompt_tokens + completion_tokens}")
     print("------------------------------------")
@@ -83,15 +134,21 @@ print("=========== LONG ARTICLE GENERATION ===========\n")
 stream = client.chat.completions.create(
     model=model_name,
     stream=True,
-    max_tokens=10000,   # allow very long output
-    stream_options={"include_usage": True},  # Requests exact token counts from vLLM/OpenAI
+    max_tokens=10000,  # allow very long output
+    stream_options={
+        "include_usage": True
+    },  # Requests exact token counts from vLLM/OpenAI
+    extra_body={
+        "chat_template_kwargs": {"enable_thinking": False},
+        "thinking_token_budget": 256,
+    },
     messages=[
         {
             "role": "system",
             "content": (
                 "You are an expert technical writer capable of producing "
                 "very detailed long-form articles."
-            )
+            ),
         },
         {
             "role": "user",
@@ -132,11 +189,12 @@ Write in **academic article style**.
 Expand each section extensively with detailed explanations.
 Do not summarize early. Continue expanding ideas thoroughly.
 """
-            )
-        }
-    ]
+            ),
+        },
+    ],
 )
 
 stream_response(stream)
 
 print("=========== TEST COMPLETE ===========")
+

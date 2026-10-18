@@ -1,157 +1,215 @@
-import statistics
+import base64
+import os
 import time
 
-from typesafe_sdk import Choice, TypeSafeClient
+from PIL import Image
+from typesafe_sdk import Box, Choice, TypeSafeClient
 
-RUNPOD_PROXY_URL = "https://4v629awimus0xl-8000.proxy.runpod.net/"
-MODEL_ID = "Vishva007/clef-flash-W4A16-AutoRound"
-
-
-def run_single_test(client: TypeSafeClient, name: str, state: str, questions: dict):
-    """Executes a single test case with high-precision timing."""
-    print(f"\n{'=' * 60}")
-    print(f"RUNNING: {name}")
-    print(f"{'=' * 60}")
-
-    t_start = time.perf_counter()
-    result = client.system_one(state=state, questions=questions)
-    elapsed_ms = (time.perf_counter() - t_start) * 1000
-
-    print(f"Latency: {elapsed_ms:.2f} ms\n")
-    for key, decision in result.choices.items():
-        print(f"[{key.upper()}] -> Selected: {decision.choice} (Confidence: {decision.confidence:.2%})")
-        print(f"  Probabilities: {decision.probabilities}")
-
-    return elapsed_ms
+RUNPOD_PROXY_URL = "https://7eo9070yla4fw4-8000.proxy.runpod.net/"
+MODEL_ID = "Vishva007/clef-flash-W4A16-AutoRound-GPTQ"
+IMAGE_PATH = "Decision-Models-vLLM/cats.jpg"
 
 
-def run_benchmark(client: TypeSafeClient, iterations: int = 2):
-    """Runs a repeatable benchmark to calculate p50 and average latency."""
-    test_cases = [
-        {
-            "name": "Invoice Request",
-            "state": "Can you email me the VAT invoice for March 2024?",
-            "instruction": "Route query to the appropriate team",
-            "options": {"billing": "Invoices and receipts", "support": "General queries"},
-        },
-        {
-            "name": "SDK Bug",
-            "state": "The SDK throws ImportError: cannot import name 'TypeSafeClient' in Python 3.11.",
-            "instruction": "Route query to the appropriate team",
-            "options": {"developer_support": "SDK, API, and code errors", "billing": "Payments"},
-        },
-        {
-            "name": "Bulk Enterprise Sales",
-            "state": "We want to purchase 500 enterprise seats for our organization next quarter.",
-            "instruction": "Route query to the appropriate team",
-            "options": {"sales": "New licenses and bulk deals", "support": "Troubleshooting"},
-        },
-    ]
+def encode_image(image_path: str) -> str:
+    """Encode an image file to a base64 Data URI."""
+    with open(image_path, "rb") as f:
+        encoded = base64.b64encode(f.read()).decode("utf-8")
+    return f"data:image/jpeg;base64,{encoded}"
 
-    print(f"\n{'=' * 60}")
-    print(f"RUNNING BENCHMARK ({len(test_cases) * iterations} total runs)")
-    print(f"{'=' * 60}")
 
-    latencies = []
-    run_idx = 1
+def print_header(title: str):
+    print(f"\n{'=' * 70}\nSCENARIO: {title}\n{'=' * 70}")
 
-    for _ in range(iterations):
-        for tc in test_cases:
-            t_start = time.perf_counter()
-            res = client.system_one(
-                state=tc["state"],
-                questions={"route": Choice(instructions=tc["instruction"], criteria=tc["options"])},
-            )
-            elapsed_ms = (time.perf_counter() - t_start) * 1000
-            latencies.append(elapsed_ms)
 
-            choice = res.choices["route"].choice
-            conf = res.choices["route"].confidence
-            print(f"Run {run_idx:02d} | [{tc['name'][:18]:<18}] | {elapsed_ms:6.2f} ms | {choice:<18} | Conf: {conf:.1%}")
-            run_idx += 1
+def run_text_routing_and_policy(client: TypeSafeClient):
+    """
+    Scenario 1: Complex Multi-Task Customer Support & Safety Evaluation
+    Evaluates intent, policy violation, sentiment, and urgency in one pass.
+    """
+    print_header("1. Complex Text Routing & Policy Enforcement")
 
-    print("\n--- Latency Summary ---")
-    print(f"Mean Latency:   {statistics.mean(latencies):.2f} ms")
-    print(f"Median (p50):   {statistics.median(latencies):.2f} ms")
-    print(f"Min / Max:      {min(latencies):.2f} ms / {max(latencies):.2f} ms")
+    ticket_text = (
+        "I need an immediate chargeback on invoice #INV-9021. Your software completely wiped "
+        "our staging table during the last sync. If this isn't refunded by tomorrow morning, "
+        "I'm filing a formal fraud complaint with our bank and escalating to corporate counsel."
+    ).strip()
+
+    questions = {
+        "intent": Choice(
+            instructions="Identify the primary business intent.",
+            criteria={
+                "refund_chargeback": "Explicit demand for money return, credit, or charge reversal",
+                "technical_bug": "Report of data loss, sync failure, or system malfunction without financial demand",
+                "churn_notice": "Notice of standard subscription termination",
+            },
+        ),
+        "escalation_severity": Choice(
+            instructions="Assess operational and legal risk level.",
+            criteria={
+                "critical": "Mentions legal action, financial penalties, bank disputes, or severe data loss",
+                "moderate": "Expressions of anger or frustration without immediate legal or financial threats",
+                "routine": "Calm or standard transactional inquiry",
+            },
+        ),
+        "target_team": Choice(
+            instructions="Route to the initial response unit.",
+            criteria={
+                "finance_disputes": "Billing disputes, refunds, and bank chargeback inquiries",
+                "sre_data_recovery": "Database restoration, data corruption, and outage remediation",
+                "general_support": "Standard ticketing and account maintenance",
+            },
+        ),
+    }
+
+    t0 = time.perf_counter()
+    res = client.system_one(state=ticket_text, questions=questions)
+    elapsed = (time.perf_counter() - t0) * 1000
+
+    print(f"Latency: {elapsed:.2f} ms")
+    choices = getattr(res, "choices", getattr(res, "answers", {}))
+    for key, val in choices.items():
+        print(f"  • {key.upper():<20} -> {val.choice:<20} (Conf: {val.confidence:.1%})")
+
+
+def run_multimodal_verification_and_grounding(client: TypeSafeClient, image_path: str):
+    """
+    Scenario 2: Multimodal Verification & Spatial Grounding
+    Pairs detection checks with bounding boxes to avoid false-positive crops.
+    """
+    print_header("2. Multimodal Spatial Grounding (Presence + Box)")
+
+    if not os.path.exists(image_path):
+        print(f"Skipping: {image_path} not found.")
+        return
+
+    with Image.open(image_path) as img:
+        w, h = img.size
+
+    image_uri = encode_image(image_path)
+    state = {
+        "image": image_uri,
+        "metadata": "Living room surveillance snapshot, 1080p, low lighting."
+    }
+
+    questions = {
+        # Verification check to validate target presence
+        "cat_presence": Choice(
+            instructions="Is there at least one cat clearly visible in `image`?",
+            criteria={
+                "present": "One or more cats are visible",
+                "absent": "No cats are visible in the scene",
+            },
+        ),
+        # Spatial bounding coordinates
+        "primary_cat_box": Box(
+            instructions="The most centrally positioned cat in `image`"
+        ),
+        # Scene context classification
+        "indoor_scene_type": Choice(
+            instructions="Classify the indoor setting.",
+            criteria={
+                "living_room": "Sofas, rugs, coffee tables, living space furniture",
+                "kitchen": "Counters, stovetops, sinks, kitchen appliances",
+                "outdoor_patio": "Decks, yards, patio furniture, gardens",
+            },
+        ),
+    }
+
+    t0 = time.perf_counter()
+    res = client.system_one(state=state, questions=questions)
+    elapsed = (time.perf_counter() - t0) * 1000
+
+    print(f"Latency: {elapsed:.2f} ms")
+    answers = getattr(res, "answers", getattr(res, "choices", {}))
+
+    for key, val in answers.items():
+        if hasattr(val, "choice"):
+            print(f"  • {key.upper():<20} -> {val.choice:<20} (Conf: {val.confidence:.1%})")
+        elif hasattr(val, "box") and val.box:
+            b = val.box
+            l = getattr(b, "left", b.get("left", 0.0) if isinstance(b, dict) else 0.0)
+            t = getattr(b, "top", b.get("top", 0.0) if isinstance(b, dict) else 0.0)
+            r = getattr(b, "right", b.get("right", 0.0) if isinstance(b, dict) else 0.0)
+            bot = getattr(b, "bottom", b.get("bottom", 0.0) if isinstance(b, dict) else 0.0)
+
+            px = (round(l * w), round(t * h), round(r * w), round(bot * h))
+            print(f"  • {key.upper():<20} -> Box: [x1={px[0]}, y1={px[1]}, x2={px[2]}, y2={px[3]}] (Conf: {val.confidence:.1%})")
+
+
+def run_e_commerce_catalog_tagging(client: TypeSafeClient):
+    """
+    Scenario 3: E-commerce Product Extraction & Cataloging
+    Demonstrates domain-specific categorization and metadata inference.
+    """
+    print_header("3. Product Catalog Tagging & Taxonomy Classification")
+
+    product_description = (
+        "Men's Apex Waterproof Trail Runner. Features a Vibram Megagrip outsole, "
+        "breathable Gore-Tex membrane, reinforced carbon-fiber toe cap, and zero-drop cushioning. "
+        "Engineered for technical alpine terrain and heavy mud."
+    )
+
+    questions = {
+        "footwear_category": Choice(
+            instructions="Select the primary footwear catalog category.",
+            criteria={
+                "trail_running": "Off-road, technical terrain running and mountain jogging shoes",
+                "road_running": "Pavement, track, and marathon lightweight running shoes",
+                "hiking_boots": "High-top boots built for backpacking and ankle support",
+                "lifestyle_sneakers": "Casual everyday street sneakers",
+            },
+        ),
+        "weatherproofing": Choice(
+            instructions="Determine water resistance capability.",
+            criteria={
+                "waterproof": "Explicitly waterproof, Gore-Tex, or sealed membrane",
+                "water_resistant": "DWR coating, splash-resistant mesh",
+                "none": "Standard breathable mesh with no water protection",
+            },
+        ),
+        "experience_tier": Choice(
+            instructions="Target user technical level.",
+            criteria={
+                "technical_expert": "Alpine, ultra-distance, reinforced protection (carbon, Vibram)",
+                "recreational_entry": "Beginner friendly, everyday park walking or light trails",
+            },
+        ),
+    }
+
+    t0 = time.perf_counter()
+    res = client.system_one(state=product_description, questions=questions)
+    elapsed = (time.perf_counter() - t0) * 1000
+
+    print(f"Latency: {elapsed:.2f} ms")
+    choices = getattr(res, "choices", getattr(res, "answers", {}))
+    for key, val in choices.items():
+        print(f"  • {key.upper():<20} -> {val.choice:<20} (Conf: {val.confidence:.1%})")
 
 
 def main():
+    # Provide the Danger-Zone header if executing vision/box tasks on supported clusters
     with TypeSafeClient(
         api_key="EMPTY",
         base_url=RUNPOD_PROXY_URL,
         model=MODEL_ID,
     ) as client:
 
-        # 0. Warmup run to prime HTTP session and server KV cache
-        print("Warming up connection...")
+        # 0. Warmup call
+        print("Priming server connection and KV cache...")
         client.system_one(
             state="Ping",
             questions={"ping": Choice(instructions="Ping", criteria={"ok": "ok", "err": "err"})},
         )
         print("Warmup complete.")
 
-        # Test Case 1: Multi-Attribute Escalation & Risk
-        state_1 = """
-        Ticket #8492:
-        'Our production cluster went down 15 minutes ago right after we upgraded our enterprise plan. 
-        None of our internal apps can connect to the database. We are losing transactions every minute, 
-        and your status page shows all green! If this isn't resolved within an hour, our legal team 
-        will review our SLA breach clauses.'
-        """
-        questions_1 = {
-            "tier": Choice(
-                instructions="Classify incident severity.",
-                criteria={
-                    "sev1_critical": "Production down, data loss, or total outage affecting business operations",
-                    "sev2_major": "Core feature degraded with no immediate workaround",
-                    "sev3_minor": "General issue, non-blocking bug, or standard configuration request",
-                },
-            ),
-            "department": Choice(
-                instructions="Assign primary responder team.",
-                criteria={
-                    "sre_infrastructure": "Host outages, hardware failures, cluster crashes, network downtime",
-                    "billing_accounts": "Subscription tiers, renewals, invoice questions, and payments",
-                    "legal_compliance": "Contractual dispute, terms of service breach, regulatory inquiries",
-                },
-            ),
-            "churn_risk": Choice(
-                instructions="Estimate customer churn/retention risk.",
-                criteria={
-                    "high": "Threatening legal action, cancellation, or expressing severe frustration",
-                    "low": "Constructive, patient, or neutral communication",
-                },
-            ),
-        }
-        run_single_test(client, "Multi-Attribute Critical SLA Incident", state_1, questions_1)
+        # 1. Text Classification & Risk Routing
+        run_text_routing_and_policy(client)
 
-        # Test Case 2: Mixed Intent (Bug causing double billing)
-        state_2 = """
-        'I was charged twice on my invoice because your checkout button froze and threw a 504 Gateway error.
-        I clicked it again, and now my credit card statement has two $499 debits. 
-        Please fix the bug on the checkout page so it doesn't happen to others, and issue a credit.'
-        """
-        questions_2 = {
-            "primary_intent": Choice(
-                instructions="Identify the primary action required for immediate resolution.",
-                criteria={
-                    "financial_remediation": "Priority is issuing a refund, reversing double charges, or fixing balance",
-                    "engineering_triage": "Priority is filing a bug report, reviewing logs, and fixing code defects",
-                },
-            ),
-            "requires_bug_report": Choice(
-                instructions="Does this ticket warrant an engineering bug report?",
-                criteria={
-                    "yes": "Explicit technical bug or gateway error documented",
-                    "no": "Routine billing discrepancy without software defect",
-                },
-            ),
-        }
-        run_single_test(client, "Mixed-Intent Boundary Test", state_2, questions_2)
+        # 2. Multimodal Verification & Spatial Grounding
+        run_multimodal_verification_and_grounding(client, IMAGE_PATH)
 
-        # Benchmark: Multi-iteration latency test
-        run_benchmark(client, iterations=2)
+        # 3. Product Catalog Tagging
+        run_e_commerce_catalog_tagging(client)
 
 
 if __name__ == "__main__":

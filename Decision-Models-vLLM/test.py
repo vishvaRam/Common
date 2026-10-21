@@ -1,6 +1,6 @@
 from typesafe_sdk import Choice, Noul, Score, TypeSafeClient
 
-RUNPOD_PROXY_URL = "https://s4edb67lrvr83l-8000.proxy.runpod.net"
+RUNPOD_PROXY_URL = "https://ix7rwllg2lsewd-8000.proxy.runpod.net"
 MODEL_ID = "Vishva007/Qwen3.5-4B-NVFP4"
 
 client = TypeSafeClient(

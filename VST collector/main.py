@@ -1,5 +1,5 @@
-import os
 from pathlib import Path
+
 
 def get_clean_plugin_names(search_folders, output_file):
     # Target extensions

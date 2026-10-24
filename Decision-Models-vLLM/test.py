@@ -1,7 +1,10 @@
+import json
+import time
+
 from typesafe_sdk import Choice, Noul, Score, TypeSafeClient
 
-RUNPOD_PROXY_URL = "https://ix7rwllg2lsewd-8000.proxy.runpod.net"
-MODEL_ID = "Vishva007/Qwen3.5-4B-NVFP4"
+RUNPOD_PROXY_URL = "http://213.173.105.26:18278"
+MODEL_ID = "Vishva007/Qwen3.5-9B-NVFP4"
 
 client = TypeSafeClient(
     api_key="Empty",
@@ -13,6 +16,8 @@ I was charged twice for my subscription this month.
 Please refund the duplicate payment. This is urgent because
 my rent payment is due tomorrow.
 """
+
+start_time = time.perf_counter()
 
 result = client.system_one(
     model=MODEL_ID,
@@ -46,6 +51,11 @@ result = client.system_one(
     },
 )
 
-print("Refund requested:", result.answers["refund_requested"])
-print("Urgency:", result.answers["urgency"])
-print("Category:", result.answers["category"])
+elapsed_time = time.perf_counter() - start_time
+
+# Extract dictionary representation from result (or fallback to vars/dict mapping)
+result_data = result.model_dump()
+
+print(f"Elapsed Time: {elapsed_time:.3f} seconds\n")
+print("Response JSON:")
+print(json.dumps(result_data, indent=2, default=str, ensure_ascii=False))

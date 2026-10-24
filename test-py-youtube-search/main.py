@@ -1,5 +1,7 @@
 import asyncio
-from py_youtube_search import YouTubeSearch, Filters
+
+from py_youtube_search import Filters, YouTubeSearch
+
 
 async def main():
     yt = YouTubeSearch()

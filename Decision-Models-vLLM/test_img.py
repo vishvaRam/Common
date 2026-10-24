@@ -1,20 +1,20 @@
 import base64
+import json
+import time
 
 import httpx
 
-RUNPOD_PROXY_URL = "https://kd7xw10b2f1g59-8000.proxy.runpod.net/v1/systemone"
-MODEL_ID = "Vishva007/clef-flash-W4A16-AutoRound-GPTQ"
+RUNPOD_PROXY_URL = "http://213.173.105.26:18278"
+MODEL_ID = "Vishva007/Qwen3.5-9B-NVFP4"
 IMAGE_PATH = "Decision-Models-vLLM/cats.jpg"
 
 
-# 1. Encode image to Data URI
 def to_data_uri(path: str) -> str:
     with open(path, "rb") as f:
         b64 = base64.b64encode(f.read()).decode("utf-8")
     return f"data:image/jpeg;base64,{b64}"
 
 
-# 2. Build the payload matching the /v1/systemone schema
 payload = {
     "model": MODEL_ID,
     "state": "Examine the image and check if it contains a cat.",
@@ -31,13 +31,24 @@ payload = {
     },
 }
 
-# 3. Post to the endpoint
+start_time = time.perf_counter()
+
 response = httpx.post(
-    RUNPOD_PROXY_URL,
+    f"{RUNPOD_PROXY_URL}/v1/systemone",
     json=payload,
     headers={"Authorization": "Bearer EMPTY"},
     timeout=60.0,
 )
 
-print(response.status_code)
-print(response.json())
+elapsed_time = time.perf_counter() - start_time
+
+print(f"Status Code: {response.status_code}")
+print(f"Elapsed Time: {elapsed_time:.3f} seconds\n")
+
+try:
+    data = response.json()
+    print("Response JSON:")
+    print(json.dumps(data, indent=2, ensure_ascii=False))
+except Exception:
+    print("Response Text:")
+    print(response.text)

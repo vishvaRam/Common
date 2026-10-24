@@ -1,6 +1,7 @@
 import asyncio
+
+from py_youtube_search import Filters, YouTubeSearch
 from youtube_transcript_api import YouTubeTranscriptApi
-from py_youtube_search import YouTubeSearch, Filters
 
 
 async def main():

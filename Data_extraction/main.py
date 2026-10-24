@@ -1,9 +1,8 @@
 import os
-import json
-from typing import List, Optional, Dict, Any, Literal
-from pydantic import BaseModel, Field
-from openai import OpenAI
+
 from dotenv import load_dotenv
+from openai import OpenAI
+from pydantic import BaseModel, Field
 
 # Load environment variables
 load_dotenv()
@@ -33,23 +32,23 @@ MODEL_NAME = "gemini-2.5-flash"
 class TableData(BaseModel):
     """Represents a single table extracted from the text"""
     title: str = Field(description="A descriptive title for the table")
-    headers: List[str] = Field(description="Column headers")
-    rows: List[Dict[str, str]] = Field(description="List of rows, where keys match headers")
+    headers: list[str] = Field(description="Column headers")
+    rows: list[dict[str, str]] = Field(description="List of rows, where keys match headers")
 
 class DocumentSection(BaseModel):
     """A logical section detected by the LLM"""
     section_title: str = Field(description="Title of the section (e.g., 'Background', 'Financials')")
     summary_content: str = Field(description="Condensed text summary of the section (40-60% of original).")
-    key_points: List[str] = Field(default=[], description="Bullet points of critical info (dates, amounts, risks)")
-    tables: List[TableData] = Field(default=[], description="Any tables found in this section")
+    key_points: list[str] = Field(default=[], description="Bullet points of critical info (dates, amounts, risks)")
+    tables: list[TableData] = Field(default=[], description="Any tables found in this section")
     
 class CondensedDocument(BaseModel):
     """The complete analyzed document"""
     document_title: str = Field(description="Main title of the document")
-    document_date: Optional[str] = Field(description="Date of the document")
+    document_date: str | None = Field(description="Date of the document")
     executive_summary: str = Field(description="2-paragraph executive summary for top management")
-    sections: List[DocumentSection] = Field(description="List of all logical sections found in the doc")
-    critical_action_items: List[str] = Field(description="List of required approvals or actions")
+    sections: list[DocumentSection] = Field(description="List of all logical sections found in the doc")
+    critical_action_items: list[str] = Field(description="List of required approvals or actions")
 
 # ============================================================================
 # DOCUMENT PROCESSOR

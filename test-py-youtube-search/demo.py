@@ -1,5 +1,4 @@
-import asyncio
-from py_youtube_search import YouTubeSearch, Filters
+from py_youtube_search import Filters, YouTubeSearch
 
 # Initialize (No API Key required)
 yt = YouTubeSearch()

@@ -1,9 +1,8 @@
 import os
-import json
-from typing import List, Optional, Dict, Any
-from pydantic import BaseModel, Field
-from openai import OpenAI
+
 from dotenv import load_dotenv
+from openai import OpenAI
+from pydantic import BaseModel, Field
 
 # Load environment variables
 load_dotenv()
@@ -33,27 +32,27 @@ class HeaderDetails(BaseModel):
     """Specific header fields found in banking notes"""
     department: str = Field(description="Department Name (e.g., Information Technology Department)")
     date: str = Field(description="Date of the note")
-    committee_name: Optional[str] = Field(description="Name of the committee (e.g., ITSC, Audit Committee)")
-    agenda_no: Optional[str] = Field(description="Agenda Number if present")
-    critical_theme: Optional[str] = Field(description="Theme (e.g., Compliance, Strategy)")
-    purpose: Optional[str] = Field(description="Purpose (e.g., For Permission, For Information)")
+    committee_name: str | None = Field(description="Name of the committee (e.g., ITSC, Audit Committee)")
+    agenda_no: str | None = Field(description="Agenda Number if present")
+    critical_theme: str | None = Field(description="Theme (e.g., Compliance, Strategy)")
+    purpose: str | None = Field(description="Purpose (e.g., For Permission, For Information)")
 
 class TableData(BaseModel):
     """Represents a table"""
-    title: Optional[str] = Field(description="Title or caption of the table")
-    headers: List[str] = Field(description="Column headers")
-    rows: List[Dict[str, str]] = Field(description="Rows as key-value pairs matching headers")
+    title: str | None = Field(description="Title or caption of the table")
+    headers: list[str] = Field(description="Column headers")
+    rows: list[dict[str, str]] = Field(description="Rows as key-value pairs matching headers")
 
 class BodySection(BaseModel):
     """A logical section of the note"""
     title: str = Field(description="Section Title (e.g., Present Requirement, Prayer)")
     content: str = Field(description="The textual content of the section")
-    tables: List[TableData] = Field(default=[], description="Tables embedded in this section")
+    tables: list[TableData] = Field(default=[], description="Tables embedded in this section")
 
 class Signatory(BaseModel):
     """Signatory details"""
     designation: str = Field(description="Designation (e.g., DVP, VP, EVP)")
-    department: Optional[str] = Field(description="Department of the signatory")
+    department: str | None = Field(description="Department of the signatory")
 
 class BankingNote(BaseModel):
     """The complete structure of the Banking Approval Note"""
@@ -61,14 +60,14 @@ class BankingNote(BaseModel):
     main_subject: str = Field(description="The main subject line of the note")
     
     # Standard sections usually found
-    background_section: Optional[BodySection] = Field(description="Context/Background section")
-    requirement_section: Optional[BodySection] = Field(description="Present Requirement/Proposal section")
-    prayer_section: Optional[BodySection] = Field(description="Prayer/Recommendation section")
+    background_section: BodySection | None = Field(description="Context/Background section")
+    requirement_section: BodySection | None = Field(description="Present Requirement/Proposal section")
+    prayer_section: BodySection | None = Field(description="Prayer/Recommendation section")
     
     # Generic list for any other sections detected
-    other_sections: List[BodySection] = Field(default=[], description="Any other sections found")
+    other_sections: list[BodySection] = Field(default=[], description="Any other sections found")
     
-    signatories: List[Signatory] = Field(default=[], description="List of officials signing the document")
+    signatories: list[Signatory] = Field(default=[], description="List of officials signing the document")
 
 # ============================================================================
 # DOCUMENT PROCESSOR
@@ -140,7 +139,7 @@ def generate_formatted_markdown(note: BankingNote, output_path: str):
     md.append("")
     
     # 3. HELPER: Render Section
-    def render_section(sec: Optional[BodySection]):
+    def render_section(sec: BodySection | None):
         if not sec: return
         # Title usually not repeated if it's implicit, but let's add it if bold
         if sec.title and sec.title.lower() not in ["background", "introduction"]: 

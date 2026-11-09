@@ -2,11 +2,12 @@ import base64
 import json
 import os
 import time
+
 import requests
 from PIL import Image, ImageDraw
 
-IMAGE_PATH = "cats.jpg"
-OUTPUT_PATH = "cat_detected.jpg"
+IMAGE_PATH = "Decision-BBoxes-vLLM/cats.jpg"
+OUTPUT_PATH = "Decision-BBoxes-vLLM/cat_detected.jpg"
 BASE_URL = "http://localhost:8000"
 
 # 1. Verify image exists

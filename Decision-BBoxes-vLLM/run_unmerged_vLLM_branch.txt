@@ -1,0 +1,25 @@
+# 1. Activate your virtual environment
+source /workspace/.venv/bin/activate
+
+# 2. Install required build dependencies inside the virtual environment
+uv pip install setuptools-scm setuptools_rust wheel ninja
+
+# 3. Clone the unmerged feature branch
+git clone -b feat/systemone-generative-box https://github.com/Mlight7/vllm.git /workspace/vllm
+cd /workspace/vllm
+
+# 4. Install in editable mode using pre-compiled CUDA/C++ binaries (bypasses local source build)
+VLLM_USE_PRECOMPILED=1 uv pip install --no-build-isolation -e .
+
+# 5. Verify the installation resolves directly to the cloned branch (run from outside /workspace/vllm)
+cd ~
+python -c "import vllm; print('Loaded vllm path:', vllm.__file__)"
+# Expected output: Loaded vllm path: /workspace/vllm/vllm/__init__.py
+
+# 6. Serve the quantized model
+cd ~
+vllm serve Vishva007/Qwen3.5-4B-W4A16-AutoRound-GPTQ \
+  --max-model-len 12288 \
+  --gpu-memory-utilization 0.80 \
+  --enable-prefix-caching \
+  --port 8000
